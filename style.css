@@ -1,99 +1,135 @@
+:root {
+  --accent: #2f7d5c;        /* CHANGE THIS LATER */
+  --accent-soft: #e6f2ec;
+  --text-main: #1f1f1f;
+  --text-muted: #555;
+  --bg-natural: #f6f7f4;
+  --card-bg: #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-  background: #fafafa;
-  color: #222;
+  background: var(--bg-natural);
+  color: var(--text-main);
   line-height: 1.6;
 }
 
 header {
-  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #ddd;
+  padding: 18px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 header h1 {
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 1px;
 }
 
 nav a {
   margin-left: 20px;
   text-decoration: none;
-  color: #333;
+  color: var(--text-main);
   font-weight: 500;
-}
-
-.hero {
-  max-width: 900px;
-  margin: 100px auto 80px;
-  padding: 0 20px;
-  text-align: center;
-}
-
-.hero h2 {
-  font-size: 44px;
-  margin-bottom: 20px;
-}
-
-.hero-sub {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 28px;
-}
-
-.hero-points p {
-  margin-bottom: 6px;
-  color: #444;
 }
 
 .btn {
   display: inline-block;
-  margin-top: 28px;
-  padding: 12px 28px;
-  background: #111;
+  padding: 12px 30px;
+  background: var(--accent);
   color: #fff;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 999px;
+  font-weight: 500;
 }
 
-.about {
-  max-width: 800px;
-  margin: 0 auto 80px;
-  padding: 0 20px;
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+.hero-section {
+  min-height: 100vh;
+  padding: 120px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-box {
+  max-width: 900px;
   text-align: center;
 }
 
-.about h3 {
-  font-size: 28px;
+.hero-box h2 {
+  font-size: 44px;
   margin-bottom: 20px;
+}
+
+.hero-box p {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.hero-divider {
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-natural),
+    var(--accent-soft)
+  );
+  padding: 120px 20px;
+  text-align: center;
+}
+
+.hero-divider h3 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.hero-divider p {
+  max-width: 700px;
+  margin: auto;
+  color: var(--text-muted);
 }
 
 .products {
   max-width: 1100px;
-  margin: 80px auto;
+  margin: 120px auto;
   padding: 0 20px;
+}
+
+.products h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
 }
 
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  gap: 28px;
 }
 
 .product-card {
-  background: #fff;
-  padding: 24px;
-  border-radius: 6px;
-  border: 1px solid #e6e6e6;
+  background: var(--card-bg);
+  padding: 28px;
+  border-radius: 10px;
+  border: 1px solid #e1e1e1;
 }
 
 .product-card h3 {
@@ -102,20 +138,21 @@ nav a {
 }
 
 .product-card p {
-  color: #555;
-  margin-bottom: 10px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
 }
 
 .price {
-  font-weight: bold;
-  color: #000;
+  font-weight: 600;
+  margin-bottom: 14px;
 }
 
 footer {
+  background: #ffffff;
+  border-top: 1px solid #ddd;
   text-align: center;
   padding: 40px 20px;
-  background: #fff;
-  border-top: 1px solid #e5e5e5;
-  color: #555;
+  color: var(--text-muted);
 }
+
 
