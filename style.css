@@ -1,186 +1,109 @@
-/* ---------- ROOT VARIABLES ---------- */
 :root {
-  --bg-main: #f6f7f4;
-  --bg-accent: #e3ede6;
-  --text-main: #1f2d27;
-  --accent: #2f7a57;
-
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --anim-fast: 200ms;
-  --anim-medium: 350ms;
+  --bg: #f9f9f5;
+  --text: #1e2b26;
+  --accent: #2f7d5c;
 }
 
-/* ---------- BASE ---------- */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.7;
 }
 
-/* ---------- NAVBAR ---------- */
 .navbar {
   position: sticky;
   top: 0;
-  height: 80px;
-  background: rgba(246, 247, 244, 0.95);
-  backdrop-filter: blur(8px);
+  background: var(--bg);
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 6%;
-  z-index: 100;
-}
-
-.logo {
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
+  z-index: 10;
 }
 
 nav a {
-  margin-left: 24px;
+  margin-left: 20px;
   text-decoration: none;
-  color: var(--text-main);
-  font-weight: 500;
+  color: var(--text);
 }
 
-/* ---------- HERO SECTIONS ---------- */
 .hero {
-  min-height: calc(100vh - 80px);
-  padding: 8vh 6%;
+  min-height: 90vh;
+  padding: 80px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.hero-primary {
-  background: linear-gradient(
-      rgba(246,247,244,0.92),
-      rgba(246,247,244,0.92)
-    ),
-    url("https://images.unsplash.com/photo-1604909052743-94e838986d24");
-  background-size: cover;
+.hero-secondary {
+  background: #eef3ef;
 }
 
-.hero-secondary,
 .hero-tertiary {
-  background: var(--bg-accent);
-}
-
-.hero h2,
-.hero h3 {
-  max-width: 720px;
-}
-
-.hero p {
-  max-width: 720px;
-  margin-top: 16px;
-}
-
-/* ---------- BUTTONS ---------- */
-.btn,
-.btn-outline {
-  display: inline-block;
-  margin-top: 32px;
-  padding: 12px 28px;
-  border-radius: 24px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: transform var(--anim-fast) var(--ease-standard),
-              box-shadow var(--anim-fast) var(--ease-standard),
-              background-color var(--anim-fast) var(--ease-standard),
-              color var(--anim-fast) var(--ease-standard);
+  background: #e4efe8;
 }
 
 .btn {
+  margin-top: 20px;
+  padding: 12px 28px;
   background: var(--accent);
   color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.btn-outline {
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
-
-.btn:hover,
-.btn-outline:hover {
+.btn:hover {
+  background: #25684d;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
-/* ---------- PRODUCTS ---------- */
-.products {
-  padding: 10vh 6%;
-  background: #fff;
+.products-page {
+  padding: 80px 40px;
 }
 
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 32px;
-  margin-top: 48px;
+  gap: 30px;
 }
 
 .product-card {
-  background: #fff;
-  padding: 28px;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-  transition: transform var(--anim-medium) var(--ease-standard),
-              box-shadow var(--anim-medium) var(--ease-standard);
+  background: white;
+  padding: 24px;
+  border-radius: 6px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
-.price {
-  font-weight: 600;
-  margin-top: 8px;
-}
-
-/* ---------- FOOTER ---------- */
 footer {
-  padding: 40px 6%;
-  background: var(--bg-accent);
-  font-size: 0.9rem;
+  text-align: center;
+  padding: 40px;
+  font-size: 14px;
 }
 
-/* ---------- REVEAL ANIMATION ---------- */
+/* Animations */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity var(--anim-medium) var(--ease-standard),
-              transform var(--anim-medium) var(--ease-standard);
+  transform: translateY(20px);
+  transition: all 0.6s ease;
 }
 
-.reveal.visible {
+.reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ---------- ACCESSIBILITY ---------- */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-  nav a {
-    margin-left: 16px;
-  }
-
-  .hero {
-    padding: 10vh 8%;
-  }
-}
