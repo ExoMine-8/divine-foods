@@ -1,5 +1,5 @@
 :root {
-  --accent: #2f7d5c;        /* CHANGE BRAND COLOR HERE */
+  --accent: #2f7d5c;        /* Brand accent — change later if needed */
   --accent-dark: #25684d;
   --accent-soft: #e6f2ec;
   --text-main: #1f1f1f;
@@ -8,6 +8,7 @@
   --card-bg: #ffffff;
 }
 
+/* ---------- Base Reset ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -18,21 +19,22 @@
 body {
   background: var(--bg-natural);
   color: var(--text-main);
-  line-height: 1.7; /* FIXED */
+  line-height: 1.7;
 }
 
+/* ---------- Header ---------- */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #ffffffcc;
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid #ddd;
+  height: 80px;
   padding: 18px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #ddd;
 }
 
 header h1 {
@@ -47,6 +49,7 @@ nav a {
   font-weight: 500;
 }
 
+/* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
   padding: 12px 30px;
@@ -73,9 +76,9 @@ nav a {
   color: #fff;
 }
 
-/* HERO FIXED FOR STICKY HEADER */
+/* ---------- Hero ---------- */
 .hero-section {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px); /* Sticky header fix */
   padding: 120px 20px;
   display: flex;
   align-items: center;
@@ -98,11 +101,16 @@ nav a {
   margin-bottom: 24px;
 }
 
+/* ---------- Scroll Story Sections ---------- */
 .hero-divider {
   min-height: 100vh;
   padding: 120px 20px;
   text-align: center;
-  background: linear-gradient(to bottom, var(--bg-natural), var(--accent-soft));
+  background: linear-gradient(
+    to bottom,
+    var(--bg-natural),
+    var(--accent-soft)
+  );
 }
 
 .hero-divider h3 {
@@ -116,6 +124,7 @@ nav a {
   color: var(--text-muted);
 }
 
+/* ---------- Products ---------- */
 .products {
   max-width: 1100px;
   margin: 120px auto;
@@ -144,7 +153,7 @@ nav a {
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
 .product-card h3 {
@@ -161,10 +170,69 @@ nav a {
   font-weight: 600;
 }
 
+/* ---------- Footer ---------- */
 footer {
   background: #ffffff;
   border-top: 1px solid #ddd;
   text-align: center;
   padding: 40px 20px;
   color: var(--text-muted);
+}
+
+/* ==================================================
+   📱 MOBILE OPTIMIZATION (AUDITED & FINAL)
+   ================================================== */
+
+@media (max-width: 768px) {
+
+  /* Header */
+  header {
+    padding: 14px 20px;
+  }
+
+  nav a {
+    margin-left: 12px;
+    font-size: 14px;
+  }
+
+  /* Hero */
+  .hero-box h2 {
+    font-size: 30px;
+  }
+
+  .hero-box p {
+    font-size: 16px;
+  }
+
+  .btn,
+  .btn-outline {
+    padding: 10px 24px;
+    font-size: 14px;
+    min-height: 44px; /* Touch target fix */
+  }
+
+  /* Scroll sections */
+  .hero-divider {
+    min-height: 70vh;
+    padding: 80px 20px;
+  }
+
+  .hero-divider h3 {
+    font-size: 26px;
+  }
+
+  /* Products */
+  .product-card {
+    padding: 22px;
+  }
+
+  .product-card h3 {
+    font-size: 18px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 16px;
+    font-size: 14px;
+  }
 }
