@@ -1,0 +1,38 @@
+const products = [
+  {
+    name: "Almonds",
+    price: "₹750 / kg",
+    description: "Premium quality almonds, rich in nutrients.",
+  },
+  {
+    name: "Cashews",
+    price: "₹820 / kg",
+    description: "Handpicked cashews with superior taste.",
+  },
+  {
+    name: "Raisins",
+    price: "₹420 / kg",
+    description: "Cleaned and hygienically packed raisins.",
+  }
+];
+
+const container = document.getElementById("product-list");
+const phoneNumber = "8489201098"; // REPLACE with real number
+
+products.forEach(product => {
+  const message = encodeURIComponent(
+    `I want to order ${product.name} (${product.price})`
+  );
+
+  container.innerHTML += `
+    <div class="product-card">
+      <h3>${product.name}</h3>
+      <p>${product.description}</p>
+      <p class="price">${product.price}</p>
+      <a class="btn"
+         href="https://wa.me/${phoneNumber}?text=${message}">
+         Order on WhatsApp
+      </a>
+    </div>
+  `;
+});
