@@ -1,60 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Divine Foods</title>
-  <meta name="description" content="The Divine Foods is a family-owned dry fruits and nuts brand, offering hygienically packed premium products sourced from certified suppliers."/>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Divine Foods | Premium Dry Fruits & Nuts</title>
+  <meta name="description" content="The Divine Foods is a family-owned brand offering hygienically packed, premium dry fruits and nuts sourced from certified suppliers." />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <h1>THE DIVINE FOODS</h1>
+<header class="navbar">
+  <h1 class="logo">THE DIVINE FOODS</h1>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<main>
-  <section class="hero-section">
-    <div class="hero-box">
-      <h2>Thoughtfully Packed. Simply Good.</h2>
-      <p>
-        Premium dry fruits and nuts sourced from certified suppliers,
-        handled with discipline, and packed under strict hygiene standards.
+<main id="home">
+
+  <!-- HERO SECTION 1 -->
+  <section class="hero hero-primary">
+    <div class="hero-content">
+      <h2 class="hero-title">Thoughtfully Packed. Simply Good.</h2>
+      <p class="hero-subtitle">
+        A family-owned food brand built on sourcing discipline, hygiene-first packaging,
+        and uncompromising quality standards.
       </p>
-      <a href="#story" class="btn">Why Divine Foods</a>
+      <div class="hero-cta">
+        <a href="#story" class="btn-outline">Our Process</a>
+      </div>
     </div>
   </section>
 
-  <section id="story" class="hero-divider">
-    <h3>Quality Is a Process</h3>
+  <!-- HERO SECTION 2 -->
+  <section id="story" class="hero hero-secondary reveal">
+    <h3>Rooted in Process, Not Promises</h3>
     <p>
-      From sourcing to sealing, every step is governed by consistency,
-      cleanliness, and accountability.
+      At The Divine Foods, every product passes through certified sourcing,
+      controlled storage, and hygienic handling before reaching your home.
+      We focus on consistency, not gimmicks.
     </p>
   </section>
 
-  <section class="hero-divider">
-    <h3>Family-Owned. Process-Driven.</h3>
+  <!-- HERO SECTION 3 -->
+  <section class="hero hero-tertiary reveal">
+    <h3>Packaging & Hygiene</h3>
     <p>
-      We prioritize long-term trust over short-term scale.
+      Each batch is packed in a controlled environment using food-grade materials
+      to preserve freshness, texture, and nutritional integrity.
     </p>
-    <a href="products.html" class="btn-outline">View Products</a>
   </section>
+
+  <!-- PRODUCTS (LOCKED BEHIND SCROLL) -->
+  <section id="products" class="products reveal">
+    <h2>Our Products</h2>
+
+    <div id="product-list" class="product-grid">
+      <!-- JS injects product cards here -->
+    </div>
+  </section>
+
 </main>
 
-<footer>
-  <p>
-    The Divine Foods<br/>
-    FSSAI Lic. No: XXXXXXXXXXXXXX<br/>
-    Address line here
-  </p>
+<footer id="contact">
+  <p>FSSAI Lic. No: XXXXXXXXXXXXXX</p>
+  <p>© The Divine Foods. All rights reserved.</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
+
 
