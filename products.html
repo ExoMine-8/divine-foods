@@ -1,30 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Products | The Divine Foods</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="navbar">
-  <h1 class="logo">THE DIVINE FOODS</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-<section class="products">
-  <h2>Our Products</h2>
-  <div class="product-card">
-    <h3>Almonds</h3>
-    <p>Premium quality almonds.</p>
-    <a class="btn" href="https://wa.me/91XXXXXXXXXX">Order on WhatsApp</a>
-  </div>
-</section>
-<footer>
-  <p>Prices subject to change.</p>
-</footer>
-</body>
-</html>
+const products = [
+  {
+    name: "Almonds",
+    price: "₹750 / kg",
+    description: "Premium quality almonds, rich in nutrients.",
+  },
+  {
+    name: "Cashews",
+    price: "₹820 / kg",
+    description: "Handpicked cashews with superior taste.",
+  },
+  {
+    name: "Raisins",
+    price: "₹420 / kg",
+    description: "Cleaned and hygienically packed raisins.",
+  }
+];
+
+const container = document.getElementById("product-list");
+const phoneNumber = "91XXXXXXXXXX"; // replace
+
+products.forEach(product => {
+  const message = encodeURIComponent(
+    `I want to order ${product.name} (${product.price})`
+  );
+
+  container.innerHTML += `
+    <div class="product-card">
+      <h3>${product.name}</h3>
+      <p>${product.description}</p>
+      <p class="price">${product.price}</p>
+      <a class="btn" 
+         href="https://wa.me/${phoneNumber}?text=${message}">
+         Order on WhatsApp
+      </a>
+    </div>
+  `;
+});
