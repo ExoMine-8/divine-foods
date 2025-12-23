@@ -1,48 +1,32 @@
-const phoneNumber = "8489201098"; // replace later
+const phoneNumber = "918489201098"; // COUNTRY CODE, NO +
 
 const products = [
   {
     name: "Premium California Almonds",
-    description:
-      "Uniform-sized almonds sourced from certified growers, known for crunch and rich flavour.",
-    price: "₹— / kg"
+    description: "Crunchy almonds sourced from certified growers.",
+    price: "Available in 250g / 500g / 1kg"
   },
   {
     name: "Whole Cashew Nuts (W320)",
-    description:
-      "High-grade cashews, carefully sorted and hygienically packed for consistent quality.",
-    price: "₹— / kg"
+    description: "High-grade cashews, hygienically packed.",
+    price: "Available in 250g / 500g / 1kg"
   },
   {
     name: "Golden Raisins",
-    description:
-      "Naturally sweet, cleaned and processed raisins with no artificial additives.",
-    price: "₹— / kg"
+    description: "Naturally sweet, consistent quality raisins.",
+    price: "Available in 500g / 1kg"
   },
   {
-    name: "Jumbo Afghan Black Raisins",
-    description:
-      "Large, sun-dried raisins with deep flavour and soft texture.",
-    price: "₹— / kg"
-  },
-  {
-    name: "Signature Mixed Dry Fruits",
-    description:
-      "A balanced blend of premium nuts curated for daily consumption.",
+    name: "Festive Combo Packs",
+    description: "Curated assortments for gifting.",
     price: "Launching Soon"
-  },
-  {
-    name: "Festive Gift Combo Packs",
-    description:
-      "Thoughtfully packed assortments designed for gifting and celebrations.",
-    price: "Coming Soon"
   }
 ];
 
 const container = document.getElementById("product-list");
 
 products.forEach(product => {
-  const message = encodeURIComponent(
+  const msg = encodeURIComponent(
     `Hello, I am interested in ${product.name}`
   );
 
@@ -51,10 +35,11 @@ products.forEach(product => {
       <h3>${product.name}</h3>
       <p>${product.description}</p>
       <p class="price">${product.price}</p>
-      <a class="btn" href="https://wa.me/${phoneNumber}?text=${message}">
+      <a class="btn" href="https://wa.me/${phoneNumber}?text=${msg}">
         Enquire on WhatsApp
       </a>
     </div>
   `;
 });
+
 
