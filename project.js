@@ -1,45 +1,51 @@
-const phoneNumber = "918489201098"; // COUNTRY CODE, NO +
+// Scroll reveal
+const reveals = document.querySelectorAll(".reveal");
 
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    }
+  });
+});
+
+reveals.forEach(r => observer.observe(r));
+
+// Products
 const products = [
   {
-    name: "Premium California Almonds",
-    description: "Crunchy almonds sourced from certified growers.",
-    price: "Available in 250g / 500g / 1kg"
+    name: "Almonds",
+    price: "₹750 / kg",
+    description: "Premium quality almonds.",
   },
   {
-    name: "Whole Cashew Nuts (W320)",
-    description: "High-grade cashews, hygienically packed.",
-    price: "Available in 250g / 500g / 1kg"
+    name: "Cashews",
+    price: "₹820 / kg",
+    description: "Handpicked cashews.",
   },
   {
-    name: "Golden Raisins",
-    description: "Naturally sweet, consistent quality raisins.",
-    price: "Available in 500g / 1kg"
-  },
-  {
-    name: "Festive Combo Packs",
-    description: "Curated assortments for gifting.",
-    price: "Launching Soon"
+    name: "Raisins",
+    price: "₹420 / kg",
+    description: "Cleaned and hygienically packed.",
   }
 ];
 
 const container = document.getElementById("product-list");
+const phone = "918489201098";
 
-products.forEach(product => {
-  const msg = encodeURIComponent(
-    `Hello, I am interested in ${product.name}`
-  );
+if (container) {
+  products.forEach(p => {
+    const msg = encodeURIComponent(`I want to order ${p.name} (${p.price})`);
+    container.innerHTML += `
+      <div class="product-card">
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <p>${p.price}</p>
+        <a class="btn" href="https://wa.me/${phone}?text=${msg}">Order</a>
+      </div>
+    `;
+  });
+}
 
-  container.innerHTML += `
-    <div class="product-card">
-      <h3>${product.name}</h3>
-      <p>${product.description}</p>
-      <p class="price">${product.price}</p>
-      <a class="btn" href="https://wa.me/${phoneNumber}?text=${msg}">
-        Enquire on WhatsApp
-      </a>
-    </div>
-  `;
-});
 
 
