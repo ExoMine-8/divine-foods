@@ -1,5 +1,6 @@
 :root {
-  --accent: #2f7d5c;        /* CHANGE THIS LATER */
+  --accent: #2f7d5c;        /* CHANGE BRAND COLOR HERE */
+  --accent-dark: #25684d;
   --accent-soft: #e6f2ec;
   --text-main: #1f1f1f;
   --text-muted: #555;
@@ -17,7 +18,7 @@
 body {
   background: var(--bg-natural);
   color: var(--text-main);
-  line-height: 1.6;
+  line-height: 1.7; /* FIXED */
 }
 
 header {
@@ -31,6 +32,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
 }
 
 header h1 {
@@ -53,6 +55,11 @@ nav a {
   text-decoration: none;
   border-radius: 999px;
   font-weight: 500;
+  transition: background 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--accent-dark);
 }
 
 .btn-outline {
@@ -61,8 +68,14 @@ nav a {
   color: var(--accent);
 }
 
+.btn-outline:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* HERO FIXED FOR STICKY HEADER */
 .hero-section {
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   padding: 120px 20px;
   display: flex;
   align-items: center;
@@ -86,14 +99,10 @@ nav a {
 }
 
 .hero-divider {
-  height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    var(--bg-natural),
-    var(--accent-soft)
-  );
+  min-height: 100vh;
   padding: 120px 20px;
   text-align: center;
+  background: linear-gradient(to bottom, var(--bg-natural), var(--accent-soft));
 }
 
 .hero-divider h3 {
@@ -130,6 +139,12 @@ nav a {
   padding: 28px;
   border-radius: 10px;
   border: 1px solid #e1e1e1;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
 .product-card h3 {
@@ -139,12 +154,11 @@ nav a {
 
 .product-card p {
   color: var(--text-muted);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .price {
   font-weight: 600;
-  margin-bottom: 14px;
 }
 
 footer {
@@ -154,5 +168,3 @@ footer {
   padding: 40px 20px;
   color: var(--text-muted);
 }
-
-
