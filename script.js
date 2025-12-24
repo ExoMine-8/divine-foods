@@ -1,33 +1,37 @@
-/* HERO SLIDESHOW */
-const hero = document.querySelector(".hero");
-const heroImages = [
-  "https://images.unsplash.com/photo-1604908177522-429bf5f7c23a",
-  "https://images.unsplash.com/photo-1615484477778-ca3b77940c25",
-  "https://images.unsplash.com/photo-1586201375754-1421e16c98d8"
+const products = [
+  {
+    name: "Almonds",
+    price: "₹750 / kg",
+    desc: "Premium grade, nutrient-rich almonds.",
+    img: "assets/almond.jpg"
+  },
+  {
+    name: "Cashews",
+    price: "₹820 / kg",
+    desc: "Handpicked cashews with natural sweetness.",
+    img: "assets/cashew.jpg"
+  },
+  {
+    name: "Pistachios",
+    price: "₹995 / kg",
+    desc: "Carefully sourced, vibrant and fresh.",
+    img: "assets/pistachio.jpg"
+  }
 ];
 
-let index = 0;
-hero.style.backgroundImage = `url(${heroImages[0]})`;
+const container = document.getElementById("product-list");
+const phoneNumber = "918489201098"; // correct WhatsApp format
 
-setInterval(() => {
-  index = (index + 1) % heroImages.length;
-  hero.style.backgroundImage = `url(${heroImages[index]})`;
-}, 6000);
-
-/* VISIT BUTTON */
-document.getElementById("visitPage").onclick = () => {
-  document.getElementById("story")
-    .scrollIntoView({ behavior: "smooth" });
-};
-
-/* UNLOCK PRODUCTS */
-const products = document.getElementById("products");
-const productsLink = document.querySelector(".products-link");
-
-window.addEventListener("scroll", () => {
-  const marker = document.querySelector(".story-end");
-  if (marker.getBoundingClientRect().top < window.innerHeight) {
-    products.classList.remove("locked");
-    productsLink.classList.remove("disabled");
-  }
+products.forEach(p => {
+  container.innerHTML += `
+    <div class="product-card">
+      <img src="${p.img}" alt="${p.name}" style="width:100%; border-radius:8px;">
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <p style="font-weight:700;">${p.price}</p>
+      <a class="btn" href="https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+        `Hello! I'd like to order ${p.name} at ${p.price}.`
+      )}">Order on WhatsApp</a>
+    </div>
+  `;
 });
