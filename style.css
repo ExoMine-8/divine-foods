@@ -85,6 +85,11 @@ a {
   color: var(--accent-light);
 }
 
+h1, h2, h3 {
+  color: #2b3a2e; /* earthy green */
+}
+
+
 /* STORY PARALLAX */
 
 .parallax {
