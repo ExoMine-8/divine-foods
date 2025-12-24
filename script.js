@@ -1,18 +1,20 @@
-const gate = document.getElementById("story-gate");
-const enterBtn = document.getElementById("enter-site");
-const productLinks = document.querySelectorAll(".locked");
-const productSection = document.querySelector(".locked-section");
+const visitBtn = document.getElementById("visitBtn");
+const productsSection = document.getElementById("products");
+const productsLink = document.querySelector(".products-link");
 
-enterBtn.addEventListener("click", () => {
-  gate.style.display = "none";
-
-  productLinks.forEach(link => {
-    link.classList.remove("locked");
-    link.style.pointerEvents = "auto";
-    link.style.opacity = "1";
-  });
-
-  productSection.classList.remove("locked-section");
+visitBtn.addEventListener("click", () => {
+  document.getElementById("story").scrollIntoView({ behavior: "smooth" });
 });
+
+window.addEventListener("scroll", () => {
+  const storyEnd = document.querySelector(".story-end");
+  const rect = storyEnd.getBoundingClientRect();
+
+  if (rect.top < window.innerHeight) {
+    productsSection.classList.remove("locked");
+    productsLink.classList.remove("disabled");
+  }
+});
+
 
 
