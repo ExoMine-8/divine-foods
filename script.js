@@ -1,186 +1,91 @@
-/* ---------- ROOT VARIABLES ---------- */
-:root {
-  --bg-main: #f6f7f4;
-  --bg-accent: #e3ede6;
-  --text-main: #1f2d27;
-  --accent: #2f7a57;
+/**
+ * The Divine Foods — Frontend Interaction Script
+ * Purpose:
+ * - Progressive reveal of sections
+ * - Scroll-gated access to products
+ * - Subtle quality-of-life animations
+ * - Mobile-safe, no external dependencies
+ */
 
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --anim-fast: 200ms;
-  --anim-medium: 350ms;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const productSection = document.querySelector(".products");
+  const heroBlocks = document.querySelectorAll(".hero-block");
 
-/* ---------- BASE ---------- */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  // Safety check
+  if (!productSection || heroBlocks.length === 0) return;
 
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
-  line-height: 1.7;
-}
+  /* ---------------------------------------
+     1️⃣ Reveal hero blocks smoothly on scroll
+  ---------------------------------------- */
 
-/* ---------- NAVBAR ---------- */
-.navbar {
-  position: sticky;
-  top: 0;
-  height: 80px;
-  background: rgba(246, 247, 244, 0.95);
-  backdrop-filter: blur(8px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 6%;
-  z-index: 100;
-}
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+        }
+      });
+    },
+    {
+      threshold: 0.3,
+    }
+  );
 
-.logo {
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
-}
+  heroBlocks.forEach((block) => {
+    revealObserver.observe(block);
+  });
 
-nav a {
-  margin-left: 24px;
-  text-decoration: none;
-  color: var(--text-main);
-  font-weight: 500;
-}
+  /* ---------------------------------------
+     2️⃣ Lock products until user scrolls
+  ---------------------------------------- */
 
-/* ---------- HERO SECTIONS ---------- */
-.hero {
-  min-height: calc(100vh - 80px);
-  padding: 8vh 6%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  let productsUnlocked = false;
 
-.hero-primary {
-  background: linear-gradient(
-      rgba(246,247,244,0.92),
-      rgba(246,247,244,0.92)
-    ),
-    url("https://images.unsplash.com/photo-1604909052743-94e838986d24");
-  background-size: cover;
-}
+  const unlockProducts = () => {
+    if (productsUnlocked) return;
 
-.hero-secondary,
-.hero-tertiary {
-  background: var(--bg-accent);
-}
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
 
-.hero h2,
-.hero h3 {
-  max-width: 720px;
-}
+    // Require user to scroll ~70% of hero experience
+    if (scrollPosition / documentHeight > 0.72) {
+      productSection.classList.remove("hidden");
+      productSection.classList.add("revealed");
+      productsUnlocked = true;
+    }
+  };
 
-.hero p {
-  max-width: 720px;
-  margin-top: 16px;
-}
+  window.addEventListener("scroll", unlockProducts);
 
-/* ---------- BUTTONS ---------- */
-.btn,
-.btn-outline {
-  display: inline-block;
-  margin-top: 32px;
-  padding: 12px 28px;
-  border-radius: 24px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: transform var(--anim-fast) var(--ease-standard),
-              box-shadow var(--anim-fast) var(--ease-standard),
-              background-color var(--anim-fast) var(--ease-standard),
-              color var(--anim-fast) var(--ease-standard);
-}
+  /* ---------------------------------------
+     3️⃣ Smooth anchor scrolling (QoL)
+  ---------------------------------------- */
 
-.btn {
-  background: var(--accent);
-  color: white;
-}
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute("href"));
+      if (!target) return;
 
-.btn-outline {
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  });
 
-.btn:hover,
-.btn-outline:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
+  /* ---------------------------------------
+     4️⃣ Micro interaction: navbar shadow
+  ---------------------------------------- */
 
-/* ---------- PRODUCTS ---------- */
-.products {
-  padding: 10vh 6%;
-  background: #fff;
-}
+  const navbar = document.querySelector(".navbar");
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 32px;
-  margin-top: 48px;
-}
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) {
+      navbar.style.boxShadow = "0 6px 20px rgba(0,0,0,0.08)";
+    } else {
+      navbar.style.boxShadow = "none";
+    }
+  });
+});
 
-.product-card {
-  background: #fff;
-  padding: 28px;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-  transition: transform var(--anim-medium) var(--ease-standard),
-              box-shadow var(--anim-medium) var(--ease-standard);
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.08);
-}
-
-.price {
-  font-weight: 600;
-  margin-top: 8px;
-}
-
-/* ---------- FOOTER ---------- */
-footer {
-  padding: 40px 6%;
-  background: var(--bg-accent);
-  font-size: 0.9rem;
-}
-
-/* ---------- REVEAL ANIMATION ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity var(--anim-medium) var(--ease-standard),
-              transform var(--anim-medium) var(--ease-standard);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ---------- ACCESSIBILITY ---------- */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-  nav a {
-    margin-left: 16px;
-  }
-
-  .hero {
-    padding: 10vh 8%;
-  }
-}
