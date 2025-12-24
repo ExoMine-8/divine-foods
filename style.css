@@ -1,24 +1,60 @@
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* VARIABLES */
 :root {
   --beige: #faf8f4;
+  --soft: #f1efe9;
   --dark: #1f1f1c;
   --muted: #4a4a42;
   --accent: #3a5f47;
 }
 
-/* BASE */
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: system-ui, sans-serif;
   background: var(--beige);
   color: var(--dark);
-  line-height: 1.6;
+  line-height: 1.7;
+}
+
+/* STORY GATE */
+.story-gate {
+  position: fixed;
+  inset: 0;
+  background: var(--beige);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-box {
+  max-width: 700px;
+  padding: 60px;
+  text-align: center;
+}
+
+.story-box h1 {
+  font-size: 2.6rem;
+  margin-bottom: 20px;
+}
+
+.story-box p {
+  margin-bottom: 20px;
+  color: var(--muted);
+}
+
+.story-box button {
+  margin-top: 20px;
+  padding: 14px 40px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 /* NAVBAR */
@@ -26,8 +62,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(250, 248, 244, 0.95);
-  backdrop-filter: blur(6px);
+  background: rgba(250,248,244,0.95);
   z-index: 10;
 }
 
@@ -37,91 +72,59 @@ body {
   padding: 18px 24px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.brand {
-  font-weight: 700;
-  letter-spacing: 1px;
 }
 
 nav a {
   margin-left: 24px;
   text-decoration: none;
   color: var(--muted);
-  font-weight: 500;
 }
 
-nav a:hover {
-  color: var(--dark);
+.locked {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 /* HERO */
 .hero {
   min-height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1600185365483-26d7a4cc7519");
+  background: linear-gradient(
+    rgba(250,248,244,0.95),
+    rgba(250,248,244,0.85)
+  ),
+  url("https://images.unsplash.com/photo-1604908177522-429bf5f7c23a");
   background-size: cover;
   background-position: center;
-  position: relative;
   display: flex;
   align-items: center;
-  padding-top: 90px;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(250, 248, 244, 0.92),
-    rgba(250, 248, 244, 0.85)
-  );
+  padding-top: 100px;
 }
 
 .hero-content {
-  position: relative;
   max-width: 700px;
-  padding: 0 24px;
   margin-left: 10%;
 }
 
 .hero h1 {
-  font-size: clamp(2.8rem, 5vw, 4rem);
-  font-weight: 700;
+  font-size: 4rem;
   margin-bottom: 20px;
 }
 
 .hero p {
-  font-size: 1.1rem;
   color: var(--muted);
-  margin-bottom: 32px;
-}
-
-/* BUTTON */
-.btn {
-  display: inline-block;
-  background: var(--accent);
-  color: #fff;
-  padding: 14px 36px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 500;
-  box-shadow: 0 10px 30px rgba(58, 95, 71, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(58, 95, 71, 0.4);
 }
 
 /* SECTIONS */
 .section {
-  padding: 100px 24px;
+  padding: 120px 24px;
 }
 
 .soft-bg {
-  background: #f3f1ec;
+  background: var(--soft);
+}
+
+.transition {
+  background: linear-gradient(var(--soft), var(--beige));
 }
 
 .section-inner {
@@ -129,51 +132,30 @@ nav a:hover {
   margin: auto;
 }
 
-.section h2 {
-  font-size: 2.4rem;
-  margin-bottom: 20px;
-}
-
-.section p {
-  max-width: 700px;
-  color: var(--muted);
-}
-
-/* PRODUCTS */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 30px;
   margin-top: 40px;
 }
 
 .product-card {
-  background: #ffffff;
-  padding: 40px 24px;
+  padding: 50px 30px;
+  background: #fff;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-  transition: transform 0.3s ease;
 }
 
-.product-card:hover {
-  transform: translateY(-6px);
+/* LOCKED PRODUCTS */
+.locked-section {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 /* FOOTER */
 .footer {
-  padding: 40px 24px;
+  padding: 50px;
   text-align: center;
-  background: #f3f1ec;
+  background: var(--soft);
   color: var(--muted);
 }
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .hero-content {
-    margin-left: 0;
-    text-align: center;
-  }
-}
-
-
