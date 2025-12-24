@@ -2,68 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Divine Foods</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="nav-container">
-      <div class="brand">THE DIVINE FOODS</div>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#products">Products</a>
-        <a href="#story">Story</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<!-- STORY GATE -->
+<div id="story-gate" class="story-gate">
+  <div class="story-box">
+    <h1>Our Story Comes First</h1>
+    <p>
+      The Divine Foods did not begin as a brand.
+      It began as a responsibility.
+    </p>
+    <p>
+      Built by a family that values trust over trends, we believe food should
+      never need explanation — only integrity. Every decision we make is rooted
+      in hygiene, compliance, and respect for the people who consume what we pack.
+    </p>
+    <p>
+      Before you explore our products, we invite you to understand why we exist.
+    </p>
+    <button id="enter-site">Enter The Divine Foods</button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="nav-container">
+    <div class="brand">THE DIVINE FOODS</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#story">Story</a>
+      <a href="#products" class="locked">Products</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>Thoughtfully Packed.<br>Simply Good.</h1>
+    <p>
+      Premium dry fruits and nuts sourced from certified suppliers,
+      processed with care, and packed under uncompromising standards.
+    </p>
+  </div>
+</section>
+
+<!-- EXTENDED STORY -->
+<section id="story" class="section soft-bg">
+  <div class="section-inner">
+    <h2>Why We Exist</h2>
+    <p>
+      Food is not a commodity to us. It is a promise.
+      A promise that what reaches your home has been handled responsibly
+      at every stage — sourcing, processing, and packaging.
+    </p>
+    <p>
+      As a family-owned business, we operate without shortcuts.
+      We choose compliance even when it is inconvenient.
+      We choose hygiene even when it costs more.
+    </p>
+    <p>
+      Our systems are built around accountability.
+      Our suppliers are audited.
+      Our facilities follow FSSAI-aligned processes.
+      And our packaging reflects restraint, not excess.
+    </p>
+    <p>
+      Only after understanding this philosophy do we believe our products
+      should speak for themselves.
+    </p>
+  </div>
+</section>
+
+<!-- TRANSITION SECTION -->
+<section class="section transition">
+  <div class="section-inner">
+    <h2>From Responsibility to Product</h2>
+    <p>
+      What we pack is a direct outcome of how we operate.
+      No artificial enhancement. No exaggerated claims.
+      Only clean, traceable dry fruits and nuts.
+    </p>
+  </div>
+</section>
+
+<!-- PRODUCTS (LOCKED INITIALLY) -->
+<section id="products" class="section products-section locked-section">
+  <div class="section-inner">
+    <h2>Our Products</h2>
+    <p class="muted">
+      Access to products is enabled after reviewing our story.
+    </p>
+
+    <div class="products">
+      <div class="product-card">Almonds (Placeholder)</div>
+      <div class="product-card">Cashews (Placeholder)</div>
+      <div class="product-card">Pistachios (Placeholder)</div>
+      <div class="product-card">Raisins (Placeholder)</div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Thoughtfully Packed.<br>Simply Good.</h1>
-      <p>
-        Premium dry fruits and nuts sourced from certified growers,
-        hygienically processed, and packed with uncompromising care.
-      </p>
-      <a href="#products" class="btn">View Products</a>
-    </div>
-  </section>
+<!-- FOOTER -->
+<footer id="contact" class="footer">
+  <p>© 2025 The Divine Foods</p>
+  <p>FSSAI Lic. No: XXXXXXXXXXXXXX</p>
+</footer>
 
-  <!-- STORY -->
-  <section id="story" class="section soft-bg">
-    <div class="section-inner">
-      <h2>Family-Owned. Quality-Driven.</h2>
-      <p>
-        Built as a family enterprise, The Divine Foods stands for transparency,
-        accountability, and long-term trust. Every batch reflects our commitment
-        to clean sourcing, careful handling, and regulatory compliance.
-      </p>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="products" class="section">
-    <div class="section-inner">
-      <h2>Our Products</h2>
-      <div class="products">
-        <div class="product-card">Almonds (Placeholder)</div>
-        <div class="product-card">Cashews (Placeholder)</div>
-        <div class="product-card">Pistachios (Placeholder)</div>
-        <div class="product-card">Raisins (Placeholder)</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© 2025 The Divine Foods</p>
-    <p>FSSAI Lic. No: XXXXXXXXXXXXXX</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
+
