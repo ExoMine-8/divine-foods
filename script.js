@@ -1,13 +1,9 @@
-// Scroll reveal
-const revealElements = document.querySelectorAll('.reveal');
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-      revealObserver.unobserve(entry.target);
-    }
+// Lightweight parallax (desktop only)
+if (window.innerWidth > 768) {
+  window.addEventListener("scroll", () => {
+    const hero = document.querySelector(".hero");
+    const offset = window.scrollY * 0.3;
+    hero.style.backgroundPositionY = `${offset}px`;
   });
-}, { threshold: 0.2 });
+}
 
-revealElements.forEach(el => revealObserver.observe(el));
