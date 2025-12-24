@@ -2,89 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Divine Foods</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
 
-<header class="navbar">
-  <div class="logo">THE DIVINE FOODS</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#story">Story</a>
-    <a href="#products">Products</a>
-    <a href="#contact">Contact</a>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">THE DIVINE FOODS</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#story">Story</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </div>
   </nav>
-</header>
 
-<!-- HERO SCROLL SECTION -->
-<section id="home" class="hero">
-  <div class="hero-block">
-    <h1>Thoughtfully Packed.<br>Simply Good.</h1>
-    <p>
-      At The Divine Foods, we believe food should be honest.
-      Sourced from certified growers, handled with care, and
-      packed with uncompromising hygiene.
-    </p>
-  </div>
+  <!-- HERO / STORY STACK -->
+  <main id="home">
 
-  <div class="hero-block">
-    <h2>Family-Owned. Quality-Driven.</h2>
-    <p>
-      Built as a family business, we operate with transparency,
-      accountability, and long-term trust at the core of everything we do.
-    </p>
-  </div>
+    <section class="hero" data-animate>
+      <h1>Thoughtfully Packed.<br>Simply Good.</h1>
+      <p>
+        At The Divine Foods, we believe food should be honest.
+        Sourced from certified growers, handled with care,
+        and packed with uncompromising hygiene.
+      </p>
+    </section>
 
-  <div class="hero-block">
-    <h2>Compliance Is Not Optional</h2>
-    <p>
-      Every product meets food safety standards and FSSAI guidelines.
-      Clean sourcing. Clean packing. Clean conscience.
-    </p>
-  </div>
+    <section class="hero secondary" data-animate>
+      <h2>Family-Owned. Quality-Driven.</h2>
+      <p>
+        Built as a family business, we operate with transparency,
+        accountability, and long-term trust at the core of everything we do.
+      </p>
+    </section>
 
-  <div class="hero-block">
-    <h2>Scroll to Explore Our Products</h2>
-    <p class="hint">⬇ Keep scrolling</p>
-  </div>
-</section>
+    <section class="hero secondary" data-animate>
+      <h2>Compliance Is Not Optional.</h2>
+      <p>
+        Every product meets food safety standards and FSSAI guidelines.
+        Clean sourcing. Clean packing. Clean conscience.
+      </p>
+    </section>
 
-<!-- PRODUCTS -->
-<section id="products" class="products hidden">
-  <h2>Our Products</h2>
+    <section class="hero hint" data-animate>
+      <h2>Scroll to Explore Our Products</h2>
+      <span class="scroll-indicator">↓ Keep scrolling</span>
+    </section>
 
-  <div class="product-grid">
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x200" />
-      <h3>Premium Almonds</h3>
-      <p>Crunchy, hand-selected almonds.</p>
-      <a class="cta" href="https://wa.me/91XXXXXXXXXX">View on WhatsApp</a>
+  </main>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="products" data-animate>
+    <h2>Our Products</h2>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <h3>Premium Almonds</h3>
+        <p>Rich, crunchy almonds sourced from certified farms.</p>
+        <span class="price">₹ — / kg</span>
+      </div>
+
+      <div class="product-card">
+        <h3>Handpicked Cashews</h3>
+        <p>Uniform size, superior taste, hygienically packed.</p>
+        <span class="price">₹ — / kg</span>
+      </div>
+
+      <div class="product-card">
+        <h3>Golden Raisins</h3>
+        <p>Cleaned, graded, and moisture-controlled packing.</p>
+        <span class="price">₹ — / kg</span>
+      </div>
     </div>
+  </section>
 
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x200" />
-      <h3>Cashew Nuts</h3>
-      <p>Rich, creamy, and hygienically packed.</p>
-      <a class="cta" href="https://wa.me/91XXXXXXXXXX">View on WhatsApp</a>
-    </div>
+  <!-- CONTACT -->
+  <section id="contact" class="contact" data-animate>
+    <h2>Contact</h2>
+    <p>Orders & enquiries via WhatsApp</p>
+    <a class="cta" href="https://wa.me/91XXXXXXXXXX">Message on WhatsApp</a>
+  </section>
 
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x200" />
-      <h3>Raisins</h3>
-      <p>Naturally sweet and sun-dried.</p>
-      <a class="cta" href="https://wa.me/91XXXXXXXXXX">View on WhatsApp</a>
-    </div>
-  </div>
-</section>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 The Divine Foods</p>
+    <p>FSSAI Lic. No: XXXXXXXXXXXX</p>
+  </footer>
 
-<footer id="contact">
-  <p>© 2025 The Divine Foods</p>
-  <p>FSSAI Lic. No: XXXXXXXXXXXX</p>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
