@@ -2,60 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Divine Foods</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="The Divine Foods is a family-owned brand offering hygienically packed premium dry fruits and nuts." />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- NAVBAR -->
+<header>
   <nav>
-    <h1>THE DIVINE FOODS</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="story.html">Story</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="logo">THE DIVINE FOODS</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="story.html">Our Story</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </nav>
+</header>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="parallax-bg">
-      <div class="parallax-layer" id="parallaxLayer"></div>
-    </div>
-
-    <div class="hero-content">
-      <h2>Thoughtfully Packed.<br>Simply Good.</h2>
-      <p>
-        Honest food, responsibly sourced from certified growers,
-        handled with care, and packed with uncompromising hygiene.
-      </p>
-      <div class="scroll-indicator">↓ Scroll for more</div>
+<main>
+  <section class="hero">
+    <div class="container hero-content reveal">
+      <h1>Thoughtfully Packed.<br>Simply Good.</h1>
+      <p>Premium dry fruits and nuts sourced from certified suppliers and packed with care.</p>
+      <a href="products.html" class="btn">View Products</a>
     </div>
   </section>
+</main>
 
-  <!-- PRODUCTS -->
-  <section id="products">
-    <h3 class="section-title">Our Products</h3>
-    <div class="product-grid" id="product-list">
-      <!-- Products injected by JS -->
-    </div>
-  </section>
+<footer>
+  FSSAI Lic. No: XXXXXXXXXXXXXX<br>
+  © The Divine Foods
+</footer>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h3 class="section-title">Contact Us</h3>
-    <p>Orders & enquiries via WhatsApp</p>
-    <a class="cta" href="https://wa.me/91XXXXXXXXXX">Message on WhatsApp</a>
-  </section>
-
-  <footer>
-    <p>© 2025 The Divine Foods</p>
-    <p>FSSAI Lic. No: XXXXXXXXXXXX</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
-
