@@ -4,101 +4,121 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Divine Foods</title>
+
+  <meta name="description"
+    content="The Divine Foods is a family-owned dry fruits and nuts brand offering hygienically packed premium products sourced from certified suppliers." />
+
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<!-- LANDING GATE -->
-<section class="landing">
-  <div class="landing-inner">
+<!-- HERO / LANDING -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
     <h1>The Divine Foods</h1>
     <p>Thoughtfully Packed. Simply Good.</p>
-    <button id="visitBtn">Visit the Page</button>
+    <button id="visitPage">Visit the Page</button>
   </div>
 </section>
 
-<!-- MAIN CONTENT -->
-<main id="mainContent">
+<!-- NAV -->
+<header class="navbar">
+  <div class="nav-inner">
+    <span class="brand">THE DIVINE FOODS</span>
+    <nav>
+      <a href="#story">Story</a>
+      <a href="#products" class="products-link disabled">Products</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- NAV -->
-  <header class="navbar">
-    <div class="nav-inner">
-      <div class="brand">THE DIVINE FOODS</div>
-      <nav>
-        <a href="#story">Story</a>
-        <a href="#products" class="products-link disabled">Products</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+<main>
 
-  <!-- STORY -->
-  <section id="story" class="section story">
-    <div class="content">
-      <h2>Our Story</h2>
+<!-- STORY -->
+<section id="story" class="section story">
+  <div class="content">
+    <h2>Our Story</h2>
 
-      <p>
-        The Divine Foods began with a simple belief:
-        food should never need justification.
-      </p>
+    <p>
+      The Divine Foods was built on restraint — not excess.
+      We believe food earns trust quietly, through process,
+      not promotion.
+    </p>
 
-      <p>
-        We are a family-owned operation built on discipline,
-        compliance, and respect for what people consume every day.
-        From certified sourcing to hygienic packing,
-        every step is deliberate.
-      </p>
+    <p>
+      As a family-owned operation, our focus has always been
+      consistency, compliance, and control. From supplier
+      certification to hygienic packing, each step is intentional.
+    </p>
 
-      <p>
-        We do not chase trends.
-        We do not overprocess.
-        We do not exaggerate benefits.
-      </p>
+    <p>
+      We do not rush sourcing.
+      We do not over-handle produce.
+      We do not compromise storage.
+    </p>
 
-      <p>
-        Our systems are aligned with FSSAI standards.
-        Our suppliers are vetted.
-        Our facilities prioritize cleanliness over speed.
-      </p>
+    <p>
+      Our facilities operate under strict hygiene protocols,
+      aligned with FSSAI norms, ensuring what reaches your home
+      is clean, safe, and reliable.
+    </p>
 
-      <p class="story-end">
-        What follows are products that exist because of this process —
-        not despite it.
-      </p>
-    </div>
-  </section>
+    <p class="story-end">
+      Only after the process is right,
+      does the product deserve attention.
+    </p>
+  </div>
+</section>
 
-  <!-- TRANSITION -->
-  <section class="section transition">
-    <div class="content">
-      <h2>From Process to Product</h2>
-      <p>
-        Only when the foundation is right,
-        does the product deserve attention.
-      </p>
-    </div>
-  </section>
+<!-- TRANSITION -->
+<section class="section transition">
+  <div class="content">
+    <h2>From Process to Product</h2>
+    <p>
+      What follows are carefully selected dry fruits and nuts,
+      packed with intent and handled with care.
+    </p>
+  </div>
+</section>
 
-  <!-- PRODUCTS -->
-  <section id="products" class="section products locked">
-    <div class="content">
-      <h2>Our Products</h2>
-      <p class="muted">
-        Carefully selected dry fruits and nuts.
-      </p>
+<!-- PRODUCTS -->
+<section id="products" class="section products locked">
+  <div class="content">
+    <h2>Our Products</h2>
+    <p class="muted">
+      Available in 250g / 500g / 1kg packs.
+    </p>
 
-      <div class="product-grid">
-        <div class="product-card">Almonds</div>
-        <div class="product-card">Cashews</div>
-        <div class="product-card">Pistachios</div>
-        <div class="product-card">Raisins</div>
+    <div class="product-grid">
+
+      <!-- PLACEHOLDER PRODUCTS -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1586201375754-1421e16c98d8" alt="Almonds">
+        <h3>Almonds</h3>
+        <p>Premium grade, nutrient-rich almonds.</p>
       </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2" alt="Cashews">
+        <h3>Cashews</h3>
+        <p>Handpicked cashews with natural sweetness.</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25" alt="Pistachios">
+        <h3>Pistachios</h3>
+        <p>Carefully sourced, vibrant and fresh.</p>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
-<!-- FOOTER -->
 <footer id="contact" class="footer">
   <p>© 2025 The Divine Foods</p>
   <p>FSSAI Lic. No: XXXXXXXXXXXXXX</p>
