@@ -8,105 +8,95 @@
 </head>
 <body>
 
-<!-- STORY GATE -->
-<div id="story-gate" class="story-gate">
-  <div class="story-box">
-    <h1>Our Story Comes First</h1>
-    <p>
-      The Divine Foods did not begin as a brand.
-      It began as a responsibility.
-    </p>
-    <p>
-      Built by a family that values trust over trends, we believe food should
-      never need explanation — only integrity. Every decision we make is rooted
-      in hygiene, compliance, and respect for the people who consume what we pack.
-    </p>
-    <p>
-      Before you explore our products, we invite you to understand why we exist.
-    </p>
-    <button id="enter-site">Enter The Divine Foods</button>
-  </div>
-</div>
-
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="nav-container">
-    <div class="brand">THE DIVINE FOODS</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#story">Story</a>
-      <a href="#products" class="locked">Products</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<!-- HERO -->
-<section id="home" class="hero">
-  <div class="hero-content">
-    <h1>Thoughtfully Packed.<br>Simply Good.</h1>
-    <p>
-      Premium dry fruits and nuts sourced from certified suppliers,
-      processed with care, and packed under uncompromising standards.
-    </p>
+<!-- LANDING GATE -->
+<section class="landing">
+  <div class="landing-inner">
+    <h1>The Divine Foods</h1>
+    <p>Thoughtfully Packed. Simply Good.</p>
+    <button id="visitBtn">Visit the Page</button>
   </div>
 </section>
 
-<!-- EXTENDED STORY -->
-<section id="story" class="section soft-bg">
-  <div class="section-inner">
-    <h2>Why We Exist</h2>
-    <p>
-      Food is not a commodity to us. It is a promise.
-      A promise that what reaches your home has been handled responsibly
-      at every stage — sourcing, processing, and packaging.
-    </p>
-    <p>
-      As a family-owned business, we operate without shortcuts.
-      We choose compliance even when it is inconvenient.
-      We choose hygiene even when it costs more.
-    </p>
-    <p>
-      Our systems are built around accountability.
-      Our suppliers are audited.
-      Our facilities follow FSSAI-aligned processes.
-      And our packaging reflects restraint, not excess.
-    </p>
-    <p>
-      Only after understanding this philosophy do we believe our products
-      should speak for themselves.
-    </p>
-  </div>
-</section>
+<!-- MAIN CONTENT -->
+<main id="mainContent">
 
-<!-- TRANSITION SECTION -->
-<section class="section transition">
-  <div class="section-inner">
-    <h2>From Responsibility to Product</h2>
-    <p>
-      What we pack is a direct outcome of how we operate.
-      No artificial enhancement. No exaggerated claims.
-      Only clean, traceable dry fruits and nuts.
-    </p>
-  </div>
-</section>
-
-<!-- PRODUCTS (LOCKED INITIALLY) -->
-<section id="products" class="section products-section locked-section">
-  <div class="section-inner">
-    <h2>Our Products</h2>
-    <p class="muted">
-      Access to products is enabled after reviewing our story.
-    </p>
-
-    <div class="products">
-      <div class="product-card">Almonds (Placeholder)</div>
-      <div class="product-card">Cashews (Placeholder)</div>
-      <div class="product-card">Pistachios (Placeholder)</div>
-      <div class="product-card">Raisins (Placeholder)</div>
+  <!-- NAV -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <div class="brand">THE DIVINE FOODS</div>
+      <nav>
+        <a href="#story">Story</a>
+        <a href="#products" class="products-link disabled">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
+
+  <!-- STORY -->
+  <section id="story" class="section story">
+    <div class="content">
+      <h2>Our Story</h2>
+
+      <p>
+        The Divine Foods began with a simple belief:
+        food should never need justification.
+      </p>
+
+      <p>
+        We are a family-owned operation built on discipline,
+        compliance, and respect for what people consume every day.
+        From certified sourcing to hygienic packing,
+        every step is deliberate.
+      </p>
+
+      <p>
+        We do not chase trends.
+        We do not overprocess.
+        We do not exaggerate benefits.
+      </p>
+
+      <p>
+        Our systems are aligned with FSSAI standards.
+        Our suppliers are vetted.
+        Our facilities prioritize cleanliness over speed.
+      </p>
+
+      <p class="story-end">
+        What follows are products that exist because of this process —
+        not despite it.
+      </p>
+    </div>
+  </section>
+
+  <!-- TRANSITION -->
+  <section class="section transition">
+    <div class="content">
+      <h2>From Process to Product</h2>
+      <p>
+        Only when the foundation is right,
+        does the product deserve attention.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="section products locked">
+    <div class="content">
+      <h2>Our Products</h2>
+      <p class="muted">
+        Carefully selected dry fruits and nuts.
+      </p>
+
+      <div class="product-grid">
+        <div class="product-card">Almonds</div>
+        <div class="product-card">Cashews</div>
+        <div class="product-card">Pistachios</div>
+        <div class="product-card">Raisins</div>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer id="contact" class="footer">
@@ -117,4 +107,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
