@@ -1,9 +1,18 @@
-// Lightweight parallax (desktop only)
-if (window.innerWidth > 768) {
-  window.addEventListener("scroll", () => {
-    const hero = document.querySelector(".hero");
-    const offset = window.scrollY * 0.3;
-    hero.style.backgroundPositionY = `${offset}px`;
+const gate = document.getElementById("story-gate");
+const enterBtn = document.getElementById("enter-site");
+const productLinks = document.querySelectorAll(".locked");
+const productSection = document.querySelector(".locked-section");
+
+enterBtn.addEventListener("click", () => {
+  gate.style.display = "none";
+
+  productLinks.forEach(link => {
+    link.classList.remove("locked");
+    link.style.pointerEvents = "auto";
+    link.style.opacity = "1";
   });
-}
+
+  productSection.classList.remove("locked-section");
+});
+
 
