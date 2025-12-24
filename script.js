@@ -53,5 +53,3 @@ reveals.forEach(el => observer.observe(el));
 function openWhatsApp() {
   window.open(`https://wa.me/${phoneNumber}`, "_blank");
 }
-
-
