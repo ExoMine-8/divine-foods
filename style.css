@@ -37,12 +37,19 @@ body {
 }
 
 .hero-block {
-  min-height: 100vh;
-  padding: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero-block.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.products.revealed {
+  opacity: 1;
+  transition: opacity 1s ease;
 }
 
 .hero h1 {
