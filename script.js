@@ -26,7 +26,24 @@ const products = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Hero 3D Parallax grid with stars retained
+  const visitedStory = localStorage.getItem('visitedStory') === 'true';
+  const productsLinks = document.querySelectorAll('a[href="products.html"]');
+  productsLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      if (!localStorage.getItem('visitedStory')) {
+        e.preventDefault();
+        window.location.href = 'story.html';
+      }
+    });
+  });
+  if (location.pathname.endsWith('story.html')) {
+    localStorage.setItem('visitedStory', 'true');
+  }
+  if (location.pathname.endsWith('products.html') && !visitedStory) {
+    window.location.href = 'story.html';
+    return;
+  }
+
   const hero = document.querySelector('.hero-parallax');
   if (hero) {
     const layer = document.createElement('div');
@@ -34,54 +51,77 @@ document.addEventListener('DOMContentLoaded', () => {
     hero.appendChild(layer);
 
     const dots = [];
-    const count = 60;
+    const count = 70;
+    const rect = hero.getBoundingClientRect();
     for (let i = 0; i < count; i++) {
-      const dot = document.createElement('span');
-      dot.className = 'dot';
-      const size = Math.random() * 6 + 4; // 4px - 10px
-      const left = Math.random() * 100;
-      const top = Math.random() * 100;
-      const depth = Math.random() * 120 - 60; // -60 to 60
-      dot.style.width = `${size}px`;
-      dot.style.height = `${size}px`;
-      dot.style.left = `${left}%`;
-      dot.style.top = `${top}%`;
-      dot.dataset.depth = depth.toFixed(2);
-      layer.appendChild(dot);
-      dots.push(dot);
+      const el = document.createElement('span');
+      el.className = 'dot';
+      const size = Math.random() * 6 + 4;
+      const depth = Math.random() * 120 - 60;
+      const x = Math.random() * rect.width;
+      const y = Math.random() * rect.height;
+      const vx = (Math.random() - 0.5) * 0.6;
+      const vy = (Math.random() - 0.5) * 0.6;
+      el.style.width = `${size}px`;
+      el.style.height = `${size}px`;
+      el.style.left = `${(x / rect.width) * 100}%`;
+      el.style.top = `${(y / rect.height) * 100}%`;
+      el.dataset.depth = String(depth);
+      layer.appendChild(el);
+      dots.push({ el, x, y, vx, vy, depth, size });
     }
 
-    let rafId = null;
-    let targetX = 0, targetY = 0;
-    const onMove = (x, y) => {
-      targetX = (x - window.innerWidth / 2) / (window.innerWidth / 2);
-      targetY = (y - window.innerHeight / 2) / (window.innerHeight / 2);
-      if (!rafId) {
-        rafId = requestAnimationFrame(update);
-      }
-    };
-    const update = () => {
-      rafId = null;
-      const rotX = targetY * -6; // tilt up/down
-      const rotY = targetX * 6;  // tilt left/right
+    let mx = null, my = null, targetX = 0, targetY = 0;
+    const repelRadius = 120;
+    const repelStrength = 12;
+    const friction = 0.98;
+    const drift = () => {
+      const rotX = (targetY) * -6;
+      const rotY = (targetX) * 6;
       layer.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
       for (const d of dots) {
-        const depth = parseFloat(d.dataset.depth);
-        const tx = targetX * depth;
-        const ty = targetY * depth;
-        d.style.transform = `translate3d(${tx}px, ${ty}px, ${depth}px)`;
+        if (mx !== null && my !== null) {
+          const dx = d.x - mx;
+          const dy = d.y - my;
+          const dist = Math.hypot(dx, dy);
+          if (dist < repelRadius && dist > 0.001) {
+            const force = (repelRadius - dist) / repelRadius * repelStrength;
+            d.vx += (dx / dist) * force;
+            d.vy += (dy / dist) * force;
+          }
+        }
+        d.vx *= friction;
+        d.vy *= friction;
+        d.x += d.vx + Math.sin(d.depth * 0.01) * 0.1;
+        d.y += d.vy + Math.cos(d.depth * 0.01) * 0.1;
+        if (d.x < 0) d.x += rect.width;
+        if (d.x > rect.width) d.x -= rect.width;
+        if (d.y < 0) d.y += rect.height;
+        if (d.y > rect.height) d.y -= rect.height;
+        const tx = targetX * d.depth;
+        const ty = targetY * d.depth;
+        d.el.style.left = `${(d.x / rect.width) * 100}%`;
+        d.el.style.top = `${(d.y / rect.height) * 100}%`;
+        d.el.style.transform = `translate3d(${tx}px, ${ty}px, ${d.depth}px)`;
       }
+      requestAnimationFrame(drift);
     };
-    window.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+    requestAnimationFrame(drift);
+    window.addEventListener('mousemove', (e) => {
+      mx = e.clientX - rect.left;
+      my = e.clientY - rect.top;
+      targetX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+      targetY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+    });
+    window.addEventListener('mouseleave', () => { mx = null; my = null; });
     window.addEventListener('deviceorientation', (e) => {
-      // Basic mobile tilt support
-      const x = (e.gamma || 0) / 45; // left-right
-      const y = (e.beta || 0) / 45;  // front-back
-      onMove((x + 1) * window.innerWidth / 2, (y + 1) * window.innerHeight / 2);
+      const x = (e.gamma || 0) / 45;
+      const y = (e.beta || 0) / 45;
+      targetX = x;
+      targetY = y;
     });
   }
 
-  // Typewriter hero heading
   const typeEl = document.querySelector('.typewrite span');
   if (typeEl) {
     const full = typeEl.getAttribute('data-text') || typeEl.textContent.trim();
