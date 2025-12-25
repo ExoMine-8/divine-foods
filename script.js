@@ -74,6 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const vid = document.querySelector('.hero-video');
     if (vid) { vid.remove(); }
 
+    const parallaxOff =
+      window.matchMedia('(max-width: 768px)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (parallaxOff) {
+      const existing = hero.querySelector('.parallax-3d');
+      if (existing) existing.remove();
+      // Skip creating parallax layer on mobile/reduced-motion
+    } else {
     const layer = document.createElement('div');
     layer.className = 'parallax-3d';
     hero.appendChild(layer);
@@ -165,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       targetX = x;
       targetY = y;
     });
+    }
   }
 
   const typeEl = document.querySelector('.typewrite span');
