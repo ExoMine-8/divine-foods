@@ -27,21 +27,46 @@ const products = [
 
 document.addEventListener('DOMContentLoaded', () => {
   const visitedStory = localStorage.getItem('visitedStory') === 'true';
-  const productsLinks = document.querySelectorAll('a[href="products.html"]');
-  productsLinks.forEach(a => {
-    a.addEventListener('click', (e) => {
-      if (!localStorage.getItem('visitedStory')) {
-        e.preventDefault();
-        window.location.href = 'story.html';
-      }
-    });
-  });
-  if (location.pathname.endsWith('story.html')) {
+  const path = location.pathname.toLowerCase();
+  const isStory = /(^|\/)(story|story\.html)$/.test(path);
+  const isProducts = /(^|\/)(products|products\.html)$/.test(path);
+
+  // Mark Story as visited when on Story page
+  if (isStory) {
     localStorage.setItem('visitedStory', 'true');
   }
-  if (location.pathname.endsWith('products.html') && !visitedStory) {
-    window.location.href = 'story.html';
-    return;
+
+  // Also mark Story as visited when clicking story links
+  document.querySelectorAll('a').forEach(a => {
+    try {
+      const url = new URL(a.href, location.href);
+      const p = url.pathname.toLowerCase();
+      if ((/(^|\/)(story|story\.html)$/.test(p))) {
+        a.addEventListener('click', () => {
+          localStorage.setItem('visitedStory', 'true');
+        });
+      }
+    } catch {}
+  });
+
+  // Intercept navigation to Products only if Story not yet visited
+  if (!visitedStory) {
+    document.querySelectorAll('a').forEach(a => {
+      try {
+        const url = new URL(a.href, location.href);
+        const p = url.pathname.toLowerCase();
+        if ((/(^|\/)(products|products\.html)$/.test(p))) {
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'story.html';
+          });
+        }
+      } catch {}
+    });
+    if (isProducts) {
+      window.location.href = 'story.html';
+      return;
+    }
   }
 
   const hero = document.querySelector('.hero-parallax');
