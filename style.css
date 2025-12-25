@@ -149,8 +149,8 @@ h1, h2, h3 {
   color: var(--text-dark);
 }
 
-.parallax-1 { background-image: url('assets/parallax-1.jpg'); }
-.parallax-2 { background-image: url('assets/parallax-2.jpg'); }
+.parallax-1 { background-image: url('parallax-1.jpg'); }
+.parallax-2 { background-image: url('parallax-2.jpg'); }
 
 .story-section {
   max-width: 900px;
