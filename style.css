@@ -80,7 +80,6 @@ header nav a {
 .hero-content {
   position: relative;
   z-index: 2;
-
   max-width: 900px;
   padding: 0 24px;
 
@@ -165,3 +164,92 @@ footer {
   text-align: center;
   font-size: 0.9rem;
 }
+
+/* =========================
+   MERGE: Divine Foods hero + parallax overlay
+========================= */
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-parallax {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(14,26,60,0.65), rgba(14,26,60,0.6)), url("assets/space-way.jpg?v=1");
+  perspective: 1000px;
+  padding: 0;
+}
+
+.hero-parallax::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9) 0, rgba(255,255,255,0.9) 2px, transparent 3px),
+    radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,0.8) 0, rgba(255,255,255,0.8) 1.5px, transparent 3px),
+    radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.7) 0, rgba(255,255,255,0.7) 1px, transparent 2px);
+  background-size: 600px 600px, 900px 900px, 1200px 1200px;
+  background-repeat: repeat;
+  animation: starDrift 120s linear infinite;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+@keyframes starDrift {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: -1200px 600px, 800px -800px, 1600px 1600px; }
+}
+
+.overlay-content {
+  text-align: center;
+  color: #ffffff;
+  max-width: 900px;
+  padding: 40px 20px;
+  z-index: 2;
+}
+
+.hero-parallax .overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.overlay-content h1 { color: #ffffff; }
+
+.parallax-3d {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+.parallax-3d .dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(143, 182, 255, 0.9);
+  box-shadow: 0 0 10px rgba(143, 182, 255, 0.9);
+}
+
+.typewrite span {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ffffff;
+}
+.typewrite span::after {
+  content: '|';
+  margin-left: 6px;
+  color: #ffffff;
+  animation: blink 0.8s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
