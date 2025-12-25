@@ -46,26 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const hero = document.querySelector('.hero-parallax');
   if (hero) {
-    const gif = document.querySelector('.hero-gif');
     const vid = document.querySelector('.hero-video');
-    if (gif) {
-      const test = new Image();
-      test.onload = () => {
-        gif.style.display = 'block';
-        if (vid) vid.style.display = 'none';
-      };
-      test.onerror = () => {
-        if (vid) vid.style.display = 'block';
-      };
-      test.src = gif.getAttribute('src');
-    }
+    if (vid) { vid.remove(); }
 
     const layer = document.createElement('div');
     layer.className = 'parallax-3d';
     hero.appendChild(layer);
 
     const dots = [];
-    const count = 35;
+    const count = 28;
     const rect = hero.getBoundingClientRect();
     for (let i = 0; i < count; i++) {
       const el = document.createElement('span');
@@ -74,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const depth = Math.random() * 120 - 60;
       const x = Math.random() * rect.width;
       const y = Math.random() * rect.height;
-      const vx = (Math.random() - 0.5) * 0.25;
-      const vy = (Math.random() - 0.5) * 0.25;
+      const vx = (Math.random() - 0.5) * 0.15;
+      const vy = (Math.random() - 0.5) * 0.15;
       el.style.width = `${size}px`;
       el.style.height = `${size}px`;
       el.style.left = `${(x / rect.width) * 100}%`;
@@ -86,9 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let mx = null, my = null, targetX = 0, targetY = 0;
-    const repelRadius = 120;
-    const repelStrength = 10;
-    const friction = 0.96;
+    const repelRadius = 90;
+    const repelStrength = 4;
+    const friction = 0.97;
     const drift = () => {
       const rotX = (targetY) * -6;
       const rotY = (targetX) * 6;
