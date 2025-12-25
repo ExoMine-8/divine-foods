@@ -179,6 +179,7 @@ h1, h2, h3 {
   box-shadow: 0 12px 22px rgba(0,0,0,0.12);
 }
 /* ===== FOOTER ===== */
+/* ===== FOOTER ===== */
 .site-footer {
   position: relative;
   background-image: url("https://images.unsplash.com/photo-1604908177522-050c95b81b2f");
@@ -189,14 +190,18 @@ h1, h2, h3 {
   margin-top: 120px;
 }
 
+/* Dark overlay — ONLY darkness layer */
 .footer-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.72);
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 0;
 }
 
+/* Content sits above overlay */
 .footer-container {
   position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: auto;
   padding: 0 24px;
@@ -212,10 +217,11 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
-.footer-col p {
+.footer-col p,
+.footer-col li {
   font-size: 0.95rem;
   line-height: 1.7;
-  opacity: 0.9;
+  color: #e6e6e6;
 }
 
 .footer-col ul {
@@ -228,9 +234,8 @@ h1, h2, h3 {
 }
 
 .footer-col ul li a {
-  color: #e5e5e5;
+  color: #e6e6e6;
   text-decoration: none;
-  font-size: 0.95rem;
   transition: color 0.2s ease;
 }
 
@@ -238,14 +243,16 @@ h1, h2, h3 {
   color: #c59b6d;
 }
 
+/* Bottom strip — NO OPACITY */
 .footer-bottom {
   position: relative;
+  z-index: 1;
   margin-top: 60px;
-  padding: 20px;
+  padding: 18px;
   text-align: center;
   font-size: 0.85rem;
-  background: rgba(0, 0, 0, 0.85);
-  opacity: 0.85;
+  background: #1a1a1a;
+  color: #dcdcdc;
 }
 
 /* Mobile tweaks */
@@ -254,7 +261,6 @@ h1, h2, h3 {
     padding-top: 60px;
   }
 }
-
 
 /* Simple Animations */
 
