@@ -141,6 +141,7 @@ img {
   min-height: 100vh;
   background-image: linear-gradient(rgba(14,26,60,0.65), rgba(14,26,60,0.6)), url("assets/space-way.jpg?v=1");
   perspective: 1000px;
+  padding: 0;
 }
 
 .hero-parallax::before {
