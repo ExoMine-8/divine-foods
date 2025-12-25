@@ -243,6 +243,17 @@ body[data-theme="dark"] .navbar { background: rgba(15,23,42,0.85); border-bottom
 .brand-logo { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow); }
 .navbar nav a { margin-left: 28px; color: var(--text); opacity: 0.95; font-weight: 500; }
 .navbar nav a:hover { color: var(--accent); opacity: 1; }
+
+/* Dark theme navbar contrast and solidity */
+body[data-theme="dark"] .navbar {
+  background: #0f172a;
+  backdrop-filter: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+}
+body[data-theme="dark"] .logo-text { color: #e6edf5; opacity: 0.95; }
+body[data-theme="dark"] .navbar nav a { color: #e6edf5; opacity: 0.9; }
+body[data-theme="dark"] .navbar nav a:hover { color: var(--accent); opacity: 1; }
+body[data-theme="dark"] .navbar .btn { background: var(--accent); color: var(--white); }
 .parallax { background-attachment: fixed; background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; }
 .hero-parallax { min-height: calc(100vh - 72px); padding-top: 72px; background: #000; perspective: 1000px; }
 .hero-parallax::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9) 0, rgba(255,255,255,0.9) 2px, transparent 3px), radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,0.8) 0, rgba(255,255,255,0.8) 1.5px, transparent 3px), radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.7) 0, rgba(255,255,255,0.7) 1px, transparent 2px); background-size: 600px 600px, 900px 900px, 1200px 1200px; background-repeat: repeat; animation: starDrift 120s linear infinite; opacity: 0.6; z-index: 1; }
