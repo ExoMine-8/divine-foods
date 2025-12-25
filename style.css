@@ -1,90 +1,132 @@
-/* GLOBAL COLORS */
 :root {
   --bg: #f9f7f3;
-  --text-dark: #2a2a2a;
-  --accent: #c99c6e;
-  --accent-light: #e7d8c7;
-  --card-bg: #ffffff;
+  --dark: #2a2a2a;
+  --accent: #c59b6d;
 }
 
-/* RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-body { background: var(--bg); color: var(--text-dark); line-height: 1.6; }
-a { text-decoration: none; color: var(--accent); }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-/* NAVBAR */
+body {
+  background: var(--bg);
+  color: var(--dark);
+}
+
+/* NAV */
 .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 16px 40px;
+  background: rgba(249,247,243,0.9);
   display: flex;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background: var(--bg);
-  position: sticky;
-  top: 0;
   z-index: 100;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
-.navbar nav a { margin-left: 1.5rem; font-weight: 500; transition: 0.3s; }
-.navbar nav a:hover { color: var(--text-dark); }
 
-/* PARALLAX HERO */
+.navbar a {
+  margin-left: 20px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* PARALLAX BASE */
 .parallax {
-  min-height: 90vh;
+  min-height: 100vh;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+}
+
+/* HERO PARALLAX */
+.hero-parallax {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2");
+}
+
+.overlay-content {
   text-align: center;
   color: #fff;
-  position: relative;
+  max-width: 700px;
+  padding: 20px;
 }
-.parallax-1 { 
-  background-image: url('https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200'); 
-}
-.parallax .hero-content {
-  background: rgba(0,0,0,0.4);
-  padding: 2rem 3rem;
-  border-radius: 12px;
-}
-.parallax h1 { font-size: 3rem; margin-bottom: 1rem; }
-.parallax p { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; }
-.btn { display: inline-block; padding: 0.85rem 1.8rem; background: var(--accent); border-radius: 40px; color: white; font-weight: 600; transition: 0.3s ease; }
-.btn:hover { background: var(--text-dark); color: var(--accent-light); }
 
-/* STORY SECTION */
-.story-section {
-  max-width: 900px;
-  margin: 3rem auto;
-  padding: 0 24px;
+.overlay-content h1 {
+  font-size: 3rem;
+  margin-bottom: 16px;
 }
-.story-section h2 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--text-dark); }
-.story-section p { font-size: 1rem; margin-bottom: 1rem; line-height: 1.8; color: #333; }
+
+/* STORY */
+.story {
+  padding: 120px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.story h2 {
+  margin-bottom: 24px;
+  color: #2b3a2e;
+}
+
+/* MID PARALLAX */
+.mid-parallax {
+  min-height: 60vh;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+    url("https://images.unsplash.com/photo-1586201375761-83865001e31c");
+}
+
+/* CTA */
+.cta {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 14px 34px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 40px;
+  font-weight: 500;
+}
+
+/* PRODUCTS */
+.products {
+  padding: 140px 20px;
+  text-align: center;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.product-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
 
 /* FOOTER */
-.site-footer {
-  position: relative;
+.footer {
+  padding: 24px;
+  text-align: center;
   background: #333;
-  color: #f4f4f4;
-  padding: 80px 0 0;
+  color: #eee;
 }
-.footer-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 48px;
-}
-.footer-col h3, .footer-col h4 { color: #c59b6d; margin-bottom: 16px; font-weight: 600; }
-.footer-col p, .footer-col ul li a { font-size: 0.95rem; opacity: 0.9; color: #f4f4f4; }
-.footer-col ul { list-style: none; padding: 0; }
-.footer-col ul li { margin-bottom: 10px; }
-.footer-bottom { text-align: center; font-size: 0.85rem; padding: 20px; background: #222; margin-top: 40px; }
 
-/* MOBILE */
-@media (max-width: 600px) {
-  .story-section { padding: 0 12px; }
-  .parallax h1 { font-size: 2rem; }
-  .parallax p { font-size: 1rem; }
-}
