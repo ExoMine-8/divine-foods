@@ -2,41 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Products | Divine Foods</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products | The Divine Foods</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="navbar">
-  <h2>THE DIVINE FOODS</h2>
+  <div class="logo">THE DIVINE FOODS</div>
   <nav>
-    <a href="index.html">Story</a>
+    <a href="index.html">Home</a>
+    <a href="story.html">Our Story</a>
     <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<section class="products">
-  <h2>Our Products</h2>
+<section class="page-hero">
+  <h1>Our Products</h1>
+  <p>Premium quality nuts and dry fruits, handpicked for you.</p>
+</section>
 
-  <div class="product-grid">
-    <div class="product-card">
-      <h3>Almonds</h3>
-      <p>Premium grade, hygienically packed.</p>
-    </div>
-    <div class="product-card">
-      <h3>Cashews</h3>
-      <p>Carefully selected and sealed fresh.</p>
-    </div>
-    <div class="product-card">
-      <h3>Mixed Dry Fruits</h3>
-      <p>Balanced blends for everyday nutrition.</p>
-    </div>
+<section class="products">
+  <div class="section-title">
+    <h2>Shop Favorites</h2>
+    <p>Pure, fresh, and packed with nutrition.</p>
+  </div>
+
+  <!-- JS injects products here -->
+  <div id="product-list" class="product-grid">
+    <!-- Fallback content if JS fails -->
+    <p style="text-align:center; width:100%;">Loading products...</p>
   </div>
 </section>
 
-<footer class="footer">
-  <p>© 2025 The Divine Foods</p>
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-col brand">
+      <h3>THE DIVINE FOODS</h3>
+      <p>Thoughtfully packed dry fruits and nuts, sourced responsibly.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="story.html">Our Story</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li>Divine Foods, Tirupur, Tamil Nadu</li>
+        <li><a href="tel:+916382735963">+91 6382735963</a></li>
+        <li><a href="mailto:support@divinefoods.in">support@divinefoods.in</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 The Divine Foods
+  </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
