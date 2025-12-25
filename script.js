@@ -46,6 +46,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const hero = document.querySelector('.hero-parallax');
   if (hero) {
+    const gif = document.querySelector('.hero-gif');
+    const vid = document.querySelector('.hero-video');
+    if (gif) {
+      const test = new Image();
+      test.onload = () => {
+        gif.style.display = 'block';
+        if (vid) vid.style.display = 'none';
+      };
+      test.onerror = () => {
+        if (vid) vid.style.display = 'block';
+      };
+      test.src = gif.getAttribute('src');
+    }
+
     const layer = document.createElement('div');
     layer.className = 'parallax-3d';
     hero.appendChild(layer);
@@ -107,9 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(drift);
     };
     requestAnimationFrame(drift);
-    const vid = document.querySelector('.hero-video');
     if (vid) {
       vid.playbackRate = 0.5;
+      vid.muted = true;
+      const playPromise = vid.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.catch(() => {
+          vid.muted = true;
+          vid.play();
+        });
+      }
     }
     window.addEventListener('mousemove', (e) => {
       mx = e.clientX - rect.left;
