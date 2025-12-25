@@ -292,11 +292,8 @@ body[data-theme="dark"] .page-hero .hero-content h1,
 body[data-theme="dark"] .page-hero .hero-content p { color: #e5e7eb; }
 
 /* Translucent sections with low-cost overlay */
-.story-content { background: rgba(255,255,255,0.06); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 80px 5%; }
-body[data-theme="dark"] .story-content { background: rgba(15,23,42,0.6); border-color: rgba(255,255,255,0.08); }
-@supports (backdrop-filter: blur(6px)) {
-  .story-content { backdrop-filter: blur(6px); }
-}
+.story-content { background: transparent; border: none; border-radius: 0; padding: 80px 5%; }
+body[data-theme="dark"] .story-content { background: transparent; }
 .quality-block { max-width: 1100px; margin: 0 auto; }
 .quality-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 24px; }
 .quality-card { background: rgba(255,255,255,0.12); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 18px 16px; text-align: center; font-weight: 600; color: var(--text); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
