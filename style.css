@@ -139,7 +139,8 @@ img {
 
 .hero-parallax {
   min-height: 100vh;
-  background-image: linear-gradient(rgba(14,26,60,0.65), rgba(14,26,60,0.6)), url("https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=80");
+  background-image: linear-gradient(rgba(14,26,60,0.65), rgba(14,26,60,0.6)), url("assets/space-way.jpg?v=1");
+  perspective: 1000px;
 }
 
 .hero-parallax::before {
@@ -153,7 +154,7 @@ img {
   background-size: 600px 600px, 900px 900px, 1200px 1200px;
   background-repeat: repeat;
   animation: starDrift 120s linear infinite;
-  opacity: 0.7;
+  opacity: 0.6;
   z-index: 1;
 }
 
@@ -161,6 +162,38 @@ img {
   0% { background-position: 0 0, 0 0, 0 0; }
   100% { background-position: -1200px 600px, 800px -800px, 1600px 1600px; }
 }
+
+/* 3D Parallax Grid */
+.parallax-3d {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+.parallax-3d .dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(143, 182, 255, 0.9);
+  box-shadow: 0 0 10px rgba(143, 182, 255, 0.9);
+}
+
+/* Typewriter heading */
+.typewrite span {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--white);
+}
+.typewrite span::after {
+  content: '|';
+  margin-left: 6px;
+  color: var(--white);
+  animation: blink 0.8s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
 .mid-parallax {
   min-height: 50vh;
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1920&q=80");
@@ -186,6 +219,7 @@ img {
 }
 
 .overlay-content h1 {
+  color: var(--white);
   font-size: 3.5rem;
   margin-bottom: 20px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);

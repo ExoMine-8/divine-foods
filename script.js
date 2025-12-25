@@ -26,6 +26,78 @@ const products = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Hero 3D Parallax grid with stars retained
+  const hero = document.querySelector('.hero-parallax');
+  if (hero) {
+    const layer = document.createElement('div');
+    layer.className = 'parallax-3d';
+    hero.appendChild(layer);
+
+    const dots = [];
+    const count = 60;
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      const size = Math.random() * 6 + 4; // 4px - 10px
+      const left = Math.random() * 100;
+      const top = Math.random() * 100;
+      const depth = Math.random() * 120 - 60; // -60 to 60
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.left = `${left}%`;
+      dot.style.top = `${top}%`;
+      dot.dataset.depth = depth.toFixed(2);
+      layer.appendChild(dot);
+      dots.push(dot);
+    }
+
+    let rafId = null;
+    let targetX = 0, targetY = 0;
+    const onMove = (x, y) => {
+      targetX = (x - window.innerWidth / 2) / (window.innerWidth / 2);
+      targetY = (y - window.innerHeight / 2) / (window.innerHeight / 2);
+      if (!rafId) {
+        rafId = requestAnimationFrame(update);
+      }
+    };
+    const update = () => {
+      rafId = null;
+      const rotX = targetY * -6; // tilt up/down
+      const rotY = targetX * 6;  // tilt left/right
+      layer.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      for (const d of dots) {
+        const depth = parseFloat(d.dataset.depth);
+        const tx = targetX * depth;
+        const ty = targetY * depth;
+        d.style.transform = `translate3d(${tx}px, ${ty}px, ${depth}px)`;
+      }
+    };
+    window.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+    window.addEventListener('deviceorientation', (e) => {
+      // Basic mobile tilt support
+      const x = (e.gamma || 0) / 45; // left-right
+      const y = (e.beta || 0) / 45;  // front-back
+      onMove((x + 1) * window.innerWidth / 2, (y + 1) * window.innerHeight / 2);
+    });
+  }
+
+  // Typewriter hero heading
+  const typeEl = document.querySelector('.typewrite span');
+  if (typeEl) {
+    const full = typeEl.getAttribute('data-text') || typeEl.textContent.trim();
+    typeEl.textContent = '';
+    let i = 0;
+    const speed = 45;
+    const type = () => {
+      if (i <= full.length) {
+        typeEl.textContent = full.slice(0, i);
+        i++;
+        setTimeout(type, speed);
+      }
+    };
+    type();
+  }
+
   // Products Rendering
   const container = document.getElementById("product-list");
   const phoneNumber = "918489201098"; 
