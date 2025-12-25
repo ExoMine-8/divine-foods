@@ -293,7 +293,16 @@ section { padding: 80px 5%; background: var(--bg); color: var(--text); }
   .product-grid { grid-template-columns: 1fr; }
   .btn { width: 100%; }
   .logo-text { display: none; }
+  .parallax { background-attachment: scroll; }
+  .hero-phases { animation-duration: 100s; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-phases { animation: none; }
+  .parallax-3d .dot { box-shadow: 0 0 6px rgba(255,255,255,0.6); }
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
 /* =========================
    MERGE: Divine Foods hero + parallax overlay
 ========================= */
@@ -402,6 +411,7 @@ section { padding: 80px 5%; background: var(--bg); color: var(--text); }
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.85);
+  will-change: transform;
 }
 
 .typewrite span {

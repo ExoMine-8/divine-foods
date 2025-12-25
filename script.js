@@ -79,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     hero.appendChild(layer);
 
     const dots = [];
-    const count = 28;
+    const isMobile = window.matchMedia('(max-width: 560px)').matches;
+    const count = isMobile ? 14 : 28;
     const rect = hero.getBoundingClientRect();
     for (let i = 0; i < count; i++) {
       const el = document.createElement('span');
@@ -92,25 +93,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const vy = (Math.random() - 0.5) * 0.15;
       el.style.width = `${size}px`;
       el.style.height = `${size}px`;
-      el.style.left = `${(x / rect.width) * 100}%`;
-      el.style.top = `${(y / rect.height) * 100}%`;
+      const baseLeft = (x / rect.width) * 100;
+      const baseTop = (y / rect.height) * 100;
+      el.style.left = `${baseLeft}%`;
+      el.style.top = `${baseTop}%`;
       el.dataset.depth = String(depth);
       layer.appendChild(el);
-      dots.push({ el, x, y, vx, vy, depth, size });
+      dots.push({ el, baseLeft, baseTop, offX: 0, offY: 0, vx, vy, depth, size });
     }
 
     let mx = null, my = null, targetX = 0, targetY = 0;
     const repelRadius = 90;
     const repelStrength = 4;
     const friction = 0.97;
+    const driftLimit = isMobile ? 24 : 36;
     const drift = () => {
       const rotX = (targetY) * -6;
       const rotY = (targetX) * 6;
       layer.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
       for (const d of dots) {
         if (mx !== null && my !== null) {
-          const dx = d.x - mx;
-          const dy = d.y - my;
+          const dx = (d.baseLeft/100 * rect.width + d.offX) - mx;
+          const dy = (d.baseTop/100 * rect.height + d.offY) - my;
           const dist = Math.hypot(dx, dy);
           if (dist < repelRadius && dist > 0.001) {
             const force = (repelRadius - dist) / repelRadius * repelStrength;
@@ -120,17 +124,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         d.vx *= friction;
         d.vy *= friction;
-        d.x += d.vx + Math.sin(d.depth * 0.01) * 0.1;
-        d.y += d.vy + Math.cos(d.depth * 0.01) * 0.1;
-        if (d.x < 0) d.x += rect.width;
-        if (d.x > rect.width) d.x -= rect.width;
-        if (d.y < 0) d.y += rect.height;
-        if (d.y > rect.height) d.y -= rect.height;
+        d.offX += d.vx + Math.sin(d.depth * 0.01) * 0.08;
+        d.offY += d.vy + Math.cos(d.depth * 0.01) * 0.08;
+        if (d.offX > driftLimit) d.offX = driftLimit;
+        if (d.offX < -driftLimit) d.offX = -driftLimit;
+        if (d.offY > driftLimit) d.offY = driftLimit;
+        if (d.offY < -driftLimit) d.offY = -driftLimit;
         const tx = targetX * d.depth;
         const ty = targetY * d.depth;
-        d.el.style.left = `${(d.x / rect.width) * 100}%`;
-        d.el.style.top = `${(d.y / rect.height) * 100}%`;
-        d.el.style.transform = `translate3d(${tx}px, ${ty}px, ${d.depth}px)`;
+        d.el.style.transform = `translate3d(${tx + d.offX}px, ${ty + d.offY}px, ${d.depth}px)`;
       }
       requestAnimationFrame(drift);
     };
@@ -153,7 +155,11 @@ document.addEventListener('DOMContentLoaded', () => {
       targetY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
     });
     window.addEventListener('mouseleave', () => { mx = null; my = null; });
+    let lastOri = 0;
     window.addEventListener('deviceorientation', (e) => {
+      const now = performance.now();
+      if (now - lastOri < 100) return;
+      lastOri = now;
       const x = (e.gamma || 0) / 45;
       const y = (e.beta || 0) / 45;
       targetX = x;
