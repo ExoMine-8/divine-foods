@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hero.appendChild(layer);
 
     const dots = [];
-    const count = 70;
+    const count = 35;
     const rect = hero.getBoundingClientRect();
     for (let i = 0; i < count; i++) {
       const el = document.createElement('span');
@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const depth = Math.random() * 120 - 60;
       const x = Math.random() * rect.width;
       const y = Math.random() * rect.height;
-      const vx = (Math.random() - 0.5) * 0.6;
-      const vy = (Math.random() - 0.5) * 0.6;
+      const vx = (Math.random() - 0.5) * 0.25;
+      const vy = (Math.random() - 0.5) * 0.25;
       el.style.width = `${size}px`;
       el.style.height = `${size}px`;
       el.style.left = `${(x / rect.width) * 100}%`;
@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let mx = null, my = null, targetX = 0, targetY = 0;
     const repelRadius = 120;
-    const repelStrength = 12;
-    const friction = 0.98;
+    const repelStrength = 10;
+    const friction = 0.96;
     const drift = () => {
       const rotX = (targetY) * -6;
       const rotY = (targetX) * 6;
@@ -107,6 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(drift);
     };
     requestAnimationFrame(drift);
+    const vid = document.querySelector('.hero-video');
+    if (vid) {
+      vid.playbackRate = 0.5;
+    }
     window.addEventListener('mousemove', (e) => {
       mx = e.clientX - rect.left;
       my = e.clientY - rect.top;
