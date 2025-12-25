@@ -1,37 +1,70 @@
 const products = [
   {
-    name: "Almonds",
+    name: "Premium Almonds",
     price: "₹750 / kg",
-    desc: "Premium grade, nutrient-rich almonds.",
-    img: "assets/almond.jpg"
+    desc: "California almonds, rich in Vitamin E and essential oils. Perfect for snacking or baking.",
+    img: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=800&q=80"
   },
   {
-    name: "Cashews",
+    name: "Jumbo Cashews",
     price: "₹820 / kg",
-    desc: "Handpicked cashews with natural sweetness.",
-    img: "assets/cashew.jpg"
+    desc: "Handpicked, whole W320 grade cashews. Creamy, sweet, and crunchy.",
+    img: "https://images.unsplash.com/photo-1574577456170-98564d5608e2?auto=format&fit=crop&w=800&q=80"
   },
   {
-    name: "Pistachios",
+    name: "Salted Pistachios",
     price: "₹995 / kg",
-    desc: "Carefully sourced, vibrant and fresh.",
-    img: "assets/pistachio.jpg"
+    desc: "Roasted and lightly salted pistachios. A heart-healthy snack with vibrant green kernels.",
+    img: "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Mixed Dry Fruits",
+    price: "₹900 / kg",
+    desc: "A balanced mix of almonds, cashews, raisins, and walnuts for your daily nutrition boost.",
+    img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
-const container = document.getElementById("product-list");
-const phoneNumber = "918489201098"; // correct WhatsApp format
+document.addEventListener('DOMContentLoaded', () => {
+  // Products Rendering
+  const container = document.getElementById("product-list");
+  const phoneNumber = "918489201098"; 
 
-products.forEach(p => {
-  container.innerHTML += `
-    <div class="product-card">
-      <img src="${p.img}" alt="${p.name}" style="width:100%; border-radius:8px;">
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-      <p style="font-weight:700;">${p.price}</p>
-      <a class="btn" href="https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-        `Hello! I'd like to order ${p.name} at ${p.price}.`
-      )}">Order on WhatsApp</a>
-    </div>
-  `;
+  if (container) {
+    let html = '';
+    products.forEach(p => {
+      html += `
+        <div class="product-card reveal">
+          <img src="${p.img}" alt="${p.name}" class="product-img">
+          <div class="product-info">
+            <h3>${p.name}</h3>
+            <span class="product-price">${p.price}</span>
+            <p>${p.desc}</p>
+            <a class="btn" href="https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+              `Hello! I'd like to order ${p.name} at ${p.price}.`
+            )}" target="_blank">Order on WhatsApp</a>
+          </div>
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+  }
+
+  // Scroll Reveal Animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Observe elements with .reveal class
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  
+  // Also observe sections that might not have the class yet but should animate
+  document.querySelectorAll('section > div, .section-title, .footer-col').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
 });
