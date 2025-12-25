@@ -139,9 +139,28 @@ img {
 
 .hero-parallax {
   min-height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url("https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=1920&q=80");
+  background-image: linear-gradient(rgba(14,26,60,0.65), rgba(14,26,60,0.6)), url("https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=80");
 }
 
+.hero-parallax::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9) 0, rgba(255,255,255,0.9) 2px, transparent 3px),
+    radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,0.8) 0, rgba(255,255,255,0.8) 1.5px, transparent 3px),
+    radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.7) 0, rgba(255,255,255,0.7) 1px, transparent 2px);
+  background-size: 600px 600px, 900px 900px, 1200px 1200px;
+  background-repeat: repeat;
+  animation: starDrift 120s linear infinite;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+@keyframes starDrift {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: -1200px 600px, 800px -800px, 1600px 1600px; }
+}
 .mid-parallax {
   min-height: 50vh;
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1920&q=80");
