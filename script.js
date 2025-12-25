@@ -9,19 +9,19 @@ const products = [
     name: "Jumbo Cashews",
     price: "₹820 / kg",
     desc: "Handpicked, whole W320 grade cashews. Creamy, sweet, and crunchy.",
-    img: "https://images.unsplash.com/photo-1574577456170-98564d5608e2?auto=format&fit=crop&w=800&q=80"
+    img: "assets/cashews.webp"
   },
   {
     name: "Salted Pistachios",
     price: "₹995 / kg",
     desc: "Roasted and lightly salted pistachios. A heart-healthy snack with vibrant green kernels.",
-    img: "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?auto=format&fit=crop&w=800&q=80"
+    img: "assets/salted-pistachios.jpg"
   },
   {
     name: "Mixed Dry Fruits",
     price: "₹900 / kg",
     desc: "A balanced mix of almonds, cashews, raisins, and walnuts for your daily nutrition boost.",
-    img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80"
+    img: "assets/mixed-nuts.jpg"
   }
 ];
 
