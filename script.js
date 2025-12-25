@@ -278,6 +278,24 @@ document.addEventListener('DOMContentLoaded', () => {
     type();
   }
 
+  // Theme toggle
+  const applyTheme = (t) => {
+    document.body.setAttribute('data-theme', t);
+    localStorage.setItem('theme', t);
+  };
+  const storedTheme = localStorage.getItem('theme');
+  if (storedTheme) {
+    applyTheme(storedTheme);
+  }
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const next = (document.body.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+      applyTheme(next);
+      toggle.textContent = next === 'dark' ? 'Light Mode' : 'Dark Mode';
+    });
+    toggle.textContent = (document.body.getAttribute('data-theme') === 'dark') ? 'Light Mode' : 'Dark Mode';
+  }
   // Products Rendering
   const container = document.getElementById("product-list");
   const phoneNumber = "918489201098"; 
