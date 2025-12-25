@@ -166,6 +166,49 @@ footer {
 }
 
 /* =========================
+   Site Footer (class-based)
+========================= */
+.site-footer {
+  background-color: #1F2937;
+  color: #E5E7EB;
+  padding: 60px 5% 20px;
+  font-size: 0.95rem;
+}
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-col h3, .footer-col h4 {
+  color: #D4A373;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+}
+.footer-col ul {
+  list-style: none;
+  padding-left: 0;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+.footer-col a {
+  color: #E5E7EB;
+  opacity: 0.8;
+  text-decoration: none;
+}
+.footer-col a:hover {
+  color: #D4A373;
+  opacity: 1;
+}
+.footer-bottom {
+  margin-top: 60px;
+  text-align: center;
+  opacity: 0.85;
+}
+
+/* =========================
    MERGE: Divine Foods hero + parallax overlay
 ========================= */
 /* Navbar styles matching index.html markup */
