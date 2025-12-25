@@ -48,6 +48,54 @@ a {
 
 /* HERO WITH SUBTLE BACKGROUND */
 
+/* ===== PAGE HERO ===== */
+.page-hero {
+  background: linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.35)
+    ),
+    url("https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2");
+  background-size: cover;
+  background-position: center;
+  padding: 100px 24px;
+  text-align: center;
+  color: #f8f8f8;
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: auto;
+}
+
+.page-hero h1 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.page-hero p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+.hero-btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 34px;
+  background-color: #c59b6d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 40px;
+  font-weight: 500;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.hero-btn:hover {
+  background-color: #b5895c;
+  transform: translateY(-2px);
+}
+
 .hero-section {
   min-height: 80vh;
   background: url('assets/hero-bg.jpg') center/cover fixed;
