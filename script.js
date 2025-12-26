@@ -158,4 +158,26 @@ document.addEventListener('DOMContentLoaded', () => {
     el.classList.add('reveal');
     observer.observe(el);
   });
+
+  // Lightweight mouse interaction for beads overlay (no parallax)
+  (() => {
+    let raf = null;
+    let mx = window.innerWidth / 2;
+    let my = window.innerHeight / 2;
+    const update = () => {
+      const dx = (mx - window.innerWidth / 2) / (window.innerWidth / 2);
+      const dy = (my - window.innerHeight / 2) / (window.innerHeight / 2);
+      const s = document.documentElement.style;
+      s.setProperty('--beads-pos1', `${dx * 20}px ${dy * 20}px`);
+      s.setProperty('--beads-pos2', `${dx * 40}px ${dy * 40}px`);
+      s.setProperty('--beads-pos3', `${dx * 60}px ${dy * 60}px`);
+      s.setProperty('--beads-pos4', `${dx * 80}px ${dy * 80}px`);
+      raf = null;
+    };
+    window.addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      if (!raf) raf = requestAnimationFrame(update);
+    });
+  })();
 });
