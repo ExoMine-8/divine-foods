@@ -27,14 +27,31 @@ const products = [
 
 document.addEventListener('DOMContentLoaded', () => {
   const CART_KEY = 'df_cart';
+  const FAV_KEY = 'df_fav';
   const getCart = () => {
     try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch { return []; }
   };
   const saveCart = (cart) => localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  const getFav = () => {
+    try { return JSON.parse(localStorage.getItem(FAV_KEY) || '[]'); } catch { return []; }
+  };
+  const saveFav = (fav) => localStorage.setItem(FAV_KEY, JSON.stringify(fav));
   const cartCount = () => getCart().reduce((n, i) => n + (i.qty || 1), 0);
+  const favCount = () => getFav().length;
   const setCartCount = () => {
     const el = document.getElementById('cart-count');
     if (el) el.textContent = cartCount() ? `(${cartCount()})` : '';
+  };
+  const setFavCount = () => {
+    const el = document.getElementById('fav-count');
+    if (el) el.textContent = favCount() ? `(${favCount()})` : '';
+  };
+  const showToast = (msg) => {
+    const el = document.getElementById('toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.style.opacity = '1';
+    setTimeout(() => { el.style.opacity = '0'; }, 1600);
   };
   const addToCart = (item) => {
     const cart = getCart();
@@ -43,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else cart.push({ ...item, qty: 1 });
     saveCart(cart);
     setCartCount();
+    showToast(`${item.name} added to cart`);
   };
   const updateQty = (name, delta) => {
     const cart = getCart().map(i => i.name === name ? { ...i, qty: Math.max(0, (i.qty || 1) + delta) } : i)
@@ -50,12 +68,22 @@ document.addEventListener('DOMContentLoaded', () => {
     saveCart(cart);
     setCartCount();
     renderCart();
+    showToast(`Updated ${name} quantity`);
   };
   const removeItem = (name) => {
     const cart = getCart().filter(i => i.name !== name);
     saveCart(cart);
     setCartCount();
     renderCart();
+    showToast(`${name} removed from cart`);
+  };
+  const toggleFav = (name) => {
+    let fav = getFav();
+    if (fav.includes(name)) fav = fav.filter(n => n !== name);
+    else fav.push(name);
+    saveFav(fav);
+    setFavCount();
+    showToast(fav.includes(name) ? `${name} added to favorites` : `${name} removed from favorites`);
   };
 
   const visitedStory = localStorage.getItem('visitedStory') === 'true';
@@ -63,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const isStory = /(^|\/)(story|story\.html)$/.test(path);
   const isProducts = /(^|\/)(products|products\.html)$/.test(path);
   const isCart = /(^|\/)(cart|cart\.html)$/.test(path);
+  const isFavPage = /(^|\/)(favorites|favorites\.html)$/.test(path);
+  const isCheckout = /(^|\/)(checkout|checkout\.html)$/.test(path);
 
   // Mark Story as visited when on Story page
   if (isStory) {
@@ -168,18 +198,24 @@ document.addEventListener('DOMContentLoaded', () => {
               `Hello! I'd like to order ${p.name} at ${p.price}.`
             )}" target="_blank" aria-label="Order ${p.name} on WhatsApp">Order on WhatsApp</a>
             <button class="btn" aria-label="Add ${p.name} to cart" data-add="${p.name}">Add to Cart</button>
+            <button class="btn" aria-label="Toggle ${p.name} favorite" data-fav="${p.name}">❤ Favorite</button>
           </div>
         </div>
       `;
     });
-    container.innerHTML = html;
-    container.querySelectorAll('[data-add]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const name = btn.getAttribute('data-add');
-        const item = products.find(i => i.name === name);
-        if (item) addToCart({ name: item.name, price: item.price });
+    setTimeout(() => {
+      container.innerHTML = html;
+      container.querySelectorAll('[data-add]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.getAttribute('data-add');
+          const item = products.find(i => i.name === name);
+          if (item) addToCart({ name: item.name, price: item.price });
+        });
       });
-    });
+      container.querySelectorAll('[data-fav]').forEach(btn => {
+        btn.addEventListener('click', () => toggleFav(btn.getAttribute('data-fav')));
+      });
+    }, 300);
   }
 
   // Scroll Reveal Animation
@@ -270,5 +306,68 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   setCartCount();
+  setFavCount();
   if (isCart) renderCart();
+  if (isFavPage) {
+    const root = document.getElementById('fav-list');
+    if (root) {
+      const favs = getFav();
+      if (!favs.length) {
+        root.innerHTML = `<p style="text-align:center;width:100%;">No favorites yet. ❤ Add from <a href="products.html">Products</a>.</p>`;
+      } else {
+        root.innerHTML = favs.map(name => {
+          const p = products.find(i => i.name === name);
+          return `
+            <div class="product-card">
+              <img src="${p?.img || 'assets/placeholder.jpg'}" alt="${name}" class="product-img" loading="lazy">
+              <div class="product-info">
+                <h3>${name}</h3>
+                <span class="product-price">${p?.price || ''}</span>
+                <button class="btn" data-add="${name}">Add to Cart</button>
+                <button class="btn" data-fav="${name}">Remove Favorite</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+        root.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', () => {
+          const name = b.getAttribute('data-add');
+          const item = products.find(i => i.name === name) || { name, price: '₹0' };
+          addToCart(item);
+        }));
+        root.querySelectorAll('[data-fav]').forEach(b => b.addEventListener('click', () => {
+          toggleFav(b.getAttribute('data-fav'));
+          // refresh favorites list
+          window.location.reload();
+        }));
+      }
+    }
+  }
+
+  if (isCheckout) {
+    const form = document.getElementById('checkout-form');
+    const errs = document.getElementById('checkout-errors');
+    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const phoneRx = /^[0-9]{10}$/;
+    const clean = (s) => (s || '').replace(/[<>]/g, '').trim();
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      errs.textContent = '';
+      const name = clean(document.getElementById('name')?.value);
+      const email = clean(document.getElementById('email')?.value);
+      const phone = clean(document.getElementById('phone')?.value);
+      const address = clean(document.getElementById('address')?.value);
+      const problems = [];
+      if (!name || name.length < 2) problems.push('Name is required.');
+      if (!emailRx.test(email)) problems.push('Enter a valid email.');
+      if (!phoneRx.test(phone)) problems.push('Enter a 10-digit phone number.');
+      if (!address || address.length < 8) problems.push('Address is too short.');
+      if (problems.length) {
+        errs.textContent = problems.join(' ');
+        showToast('Fix validation errors');
+        return;
+      }
+      showToast('Order placed (demo)');
+      form.reset();
+    });
+  }
 });

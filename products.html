@@ -17,6 +17,7 @@
     <a href="products.html">Products</a>
     <a href="contact.html">Contact</a>
     <a href="cart.html" aria-label="View Cart">Cart <span id="cart-count" aria-live="polite"></span></a>
+    <a href="favorites.html" aria-label="View Favorites">Favorites <span id="fav-count" aria-live="polite"></span></a>
   </nav>
 </header>
 
@@ -34,7 +35,22 @@
   <!-- JS injects products here -->
   <div id="product-list" class="product-grid">
     <!-- Fallback content if JS fails -->
-    <p style="text-align:center; width:100%;">Loading products...</p>
+    <div class="product-card" style="opacity:0.6;">
+      <div class="product-img" style="background:#111; height:220px;"></div>
+      <div class="product-info">
+        <div style="height:18px;background:#333;border-radius:6px;margin-bottom:10px;"></div>
+        <div style="height:14px;background:#2a2a2a;border-radius:6px;margin-bottom:12px;"></div>
+        <div style="height:14px;background:#2a2a2a;border-radius:6px;margin-bottom:12px;"></div>
+      </div>
+    </div>
+    <div class="product-card" style="opacity:0.6;">
+      <div class="product-img" style="background:#111; height:220px;"></div>
+      <div class="product-info">
+        <div style="height:18px;background:#333;border-radius:6px;margin-bottom:10px;"></div>
+        <div style="height:14px;background:#2a2a2a;border-radius:6px;margin-bottom:12px;"></div>
+        <div style="height:14px;background:#2a2a2a;border-radius:6px;margin-bottom:12px;"></div>
+      </div>
+    </div>
   </div>
 </section>
 

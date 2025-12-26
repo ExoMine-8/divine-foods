@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Checkout | The Divine Foods</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="assets/logo.png">
+</head>
+<body>
+<header class="navbar">
+  <div class="logo"><img src="assets/logo.png" alt="The Divine Foods" class="brand-logo"><span class="logo-text">THE DIVINE FOODS</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="story.html">Our Story</a>
+    <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html" aria-label="View Cart">Cart <span id="cart-count" aria-live="polite"></span></a>
+    <a href="favorites.html" aria-label="View Favorites">Favorites <span id="fav-count" aria-live="polite"></span></a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="hero-content">
+    <div class="hero-panel">
+      <h1>Checkout</h1>
+      <p>Enter your shipping details. This is a demo checkout.</p>
+    </div>
+  </div>
+</section>
+
+<section class="story-content">
+  <div class="panel">
+    <form id="checkout-form" novalidate>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
+        <div>
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" class="btn" style="width:100%;background:#fff;color:#000;">
+          <small class="text-muted">As on your ID</small>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" class="btn" style="width:100%;background:#fff;color:#000;">
+        </div>
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" class="btn" style="width:100%;background:#fff;color:#000;">
+        </div>
+        <div style="grid-column:1/-1;">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" rows="3" class="btn" style="width:100%;background:#fff;color:#000;"></textarea>
+        </div>
+      </div>
+      <div id="checkout-errors" style="color:#ef4444;margin-top:12px;"></div>
+      <button type="submit" class="btn" style="margin-top:16px;">Place Order</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-bottom">© 2025 The Divine Foods</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
