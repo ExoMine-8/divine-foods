@@ -387,6 +387,10 @@ body[data-theme="dark"] .hero-panel p { color: #e6edf5; }
   .page-hero { padding: 90px 14px 50px; }
   .page-hero .hero-content h1 { font-size: clamp(1.25rem, 8.5vw, 2rem); line-height: 1.25; }
   .page-hero .hero-content p { font-size: 0.95rem; }
+  .hero-parallax { min-height: auto; padding-bottom: 80px; }
+  .hero-parallax .overlay-content { min-height: unset; }
+  .hero-panel { padding: 20px 16px; }
+  .hero-parallax::before { opacity: 0.35; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -407,7 +411,7 @@ h1, h2, h3, .overlay-content h1 { overflow-wrap: anywhere; word-break: break-wor
   width: 100%;
   height: 72px;
   padding: 0 60px;
-  background: rgba(247, 245, 242, 0.95);
+  background: var(--bg);
   backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
