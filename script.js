@@ -164,20 +164,31 @@ document.addEventListener('DOMContentLoaded', () => {
     let raf = null;
     let mx = window.innerWidth / 2;
     let my = window.innerHeight / 2;
-    const update = () => {
+    let tx = mx, ty = my;
+    let idleTimer = null;
+    const step = () => {
+      // ease towards target
+      const k = 0.12;
+      mx += (tx - mx) * k;
+      my += (ty - my) * k;
       const dx = (mx - window.innerWidth / 2) / (window.innerWidth / 2);
       const dy = (my - window.innerHeight / 2) / (window.innerHeight / 2);
       const s = document.documentElement.style;
-      s.setProperty('--beads-pos1', `${dx * 20}px ${dy * 20}px`);
-      s.setProperty('--beads-pos2', `${dx * 40}px ${dy * 40}px`);
-      s.setProperty('--beads-pos3', `${dx * 60}px ${dy * 60}px`);
-      s.setProperty('--beads-pos4', `${dx * 80}px ${dy * 80}px`);
-      raf = null;
+      s.setProperty('--beads-pos1', `${dx * 50}px ${dy * 50}px`);
+      s.setProperty('--beads-pos2', `${dx * 100}px ${dy * 100}px`);
+      s.setProperty('--beads-pos3', `${dx * 150}px ${dy * 150}px`);
+      s.setProperty('--beads-pos4', `${dx * 200}px ${dy * 200}px`);
+      raf = requestAnimationFrame(step);
+    };
+    const startLoop = () => {
+      if (!raf) raf = requestAnimationFrame(step);
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => { cancelAnimationFrame(raf); raf = null; }, 1200);
     };
     window.addEventListener('mousemove', (e) => {
-      mx = e.clientX;
-      my = e.clientY;
-      if (!raf) raf = requestAnimationFrame(update);
-    });
+      tx = e.clientX;
+      ty = e.clientY;
+      startLoop();
+    }, { passive: true });
   })();
 });
