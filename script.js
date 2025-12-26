@@ -26,10 +26,43 @@ const products = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+  const CART_KEY = 'df_cart';
+  const getCart = () => {
+    try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch { return []; }
+  };
+  const saveCart = (cart) => localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  const cartCount = () => getCart().reduce((n, i) => n + (i.qty || 1), 0);
+  const setCartCount = () => {
+    const el = document.getElementById('cart-count');
+    if (el) el.textContent = cartCount() ? `(${cartCount()})` : '';
+  };
+  const addToCart = (item) => {
+    const cart = getCart();
+    const idx = cart.findIndex(i => i.name === item.name);
+    if (idx >= 0) cart[idx].qty = (cart[idx].qty || 1) + 1;
+    else cart.push({ ...item, qty: 1 });
+    saveCart(cart);
+    setCartCount();
+  };
+  const updateQty = (name, delta) => {
+    const cart = getCart().map(i => i.name === name ? { ...i, qty: Math.max(0, (i.qty || 1) + delta) } : i)
+      .filter(i => i.qty > 0);
+    saveCart(cart);
+    setCartCount();
+    renderCart();
+  };
+  const removeItem = (name) => {
+    const cart = getCart().filter(i => i.name !== name);
+    saveCart(cart);
+    setCartCount();
+    renderCart();
+  };
+
   const visitedStory = localStorage.getItem('visitedStory') === 'true';
   const path = location.pathname.toLowerCase();
   const isStory = /(^|\/)(story|story\.html)$/.test(path);
   const isProducts = /(^|\/)(products|products\.html)$/.test(path);
+  const isCart = /(^|\/)(cart|cart\.html)$/.test(path);
 
   // Mark Story as visited when on Story page
   if (isStory) {
@@ -126,19 +159,27 @@ document.addEventListener('DOMContentLoaded', () => {
     products.forEach(p => {
       html += `
         <div class="product-card reveal">
-          <img src="${p.img}" alt="${p.name}" class="product-img">
+          <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy" decoding="async" fetchpriority="low">
           <div class="product-info">
             <h3>${p.name}</h3>
             <span class="product-price">${p.price}</span>
             <p>${p.desc}</p>
             <a class="btn" href="https://wa.me/${phoneNumber}?text=${encodeURIComponent(
               `Hello! I'd like to order ${p.name} at ${p.price}.`
-            )}" target="_blank">Order on WhatsApp</a>
+            )}" target="_blank" aria-label="Order ${p.name} on WhatsApp">Order on WhatsApp</a>
+            <button class="btn" aria-label="Add ${p.name} to cart" data-add="${p.name}">Add to Cart</button>
           </div>
         </div>
       `;
     });
     container.innerHTML = html;
+    container.querySelectorAll('[data-add]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-add');
+        const item = products.find(i => i.name === name);
+        if (item) addToCart({ name: item.name, price: item.price });
+      });
+    });
   }
 
   // Scroll Reveal Animation
@@ -191,4 +232,43 @@ document.addEventListener('DOMContentLoaded', () => {
       startLoop();
     }, { passive: true });
   })();
+
+  // Cart page render
+  const renderCart = () => {
+    const root = document.getElementById('cart-container');
+    if (!root) return;
+    const items = getCart();
+    if (!items.length) {
+      root.innerHTML = `<p style="text-align:center;">Your cart is empty. <a href="products.html">Browse products</a>.</p>`;
+      document.getElementById('cart-summary').textContent = '';
+      return;
+    }
+    let total = 0;
+    root.innerHTML = items.map(i => {
+      const priceNum = parseInt((i.price.match(/\d+/) || ['0'])[0], 10);
+      const line = priceNum * (i.qty || 1);
+      total += line;
+      return `
+        <div class="product-card" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; margin-bottom:10px;">
+          <div>
+            <strong>${i.name}</strong><br>
+            <span class="product-price">${i.price}</span>
+          </div>
+          <div>
+            <button class="btn" aria-label="Decrease ${i.name} quantity" data-dec="${i.name}" style="padding:6px 12px;">-</button>
+            <span style="margin:0 10px;">${i.qty || 1}</span>
+            <button class="btn" aria-label="Increase ${i.name} quantity" data-inc="${i.name}" style="padding:6px 12px;">+</button>
+            <button class="btn" aria-label="Remove ${i.name} from cart" data-rem="${i.name}" style="padding:6px 12px; background:#b91c1c;">Remove</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+    document.getElementById('cart-summary').textContent = `Subtotal: ₹${total} (approx)`;
+    root.querySelectorAll('[data-dec]').forEach(b => b.addEventListener('click', () => updateQty(b.getAttribute('data-dec'), -1)));
+    root.querySelectorAll('[data-inc]').forEach(b => b.addEventListener('click', () => updateQty(b.getAttribute('data-inc'), +1)));
+    root.querySelectorAll('[data-rem]').forEach(b => b.addEventListener('click', () => removeItem(b.getAttribute('data-rem'))));
+  };
+
+  setCartCount();
+  if (isCart) renderCart();
 });
