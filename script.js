@@ -174,10 +174,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const dx = (mx - window.innerWidth / 2) / (window.innerWidth / 2);
       const dy = (my - window.innerHeight / 2) / (window.innerHeight / 2);
       const s = document.documentElement.style;
-      s.setProperty('--beads-pos1', `${-dx * 50}px ${-dy * 50}px`);
-      s.setProperty('--beads-pos2', `${-dx * 100}px ${-dy * 100}px`);
-      s.setProperty('--beads-pos3', `${-dx * 150}px ${-dy * 150}px`);
-      s.setProperty('--beads-pos4', `${-dx * 200}px ${-dy * 200}px`);
+      s.setProperty('--beads-pos1', `${-dx * 160}px ${-dy * 160}px`);
+      s.setProperty('--beads-pos2', `${-dx * 260}px ${-dy * 260}px`);
+      s.setProperty('--beads-pos3', `${-dx * 360}px ${-dy * 360}px`);
+      s.setProperty('--beads-pos4', `${-dx * 460}px ${-dy * 460}px`);
       raf = requestAnimationFrame(step);
     };
     const startLoop = () => {
