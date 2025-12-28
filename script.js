@@ -1,4 +1,6 @@
-// Products data
+// ========================================
+// PRODUCT DATA
+// ========================================
 const products = [
   {
     name: "Almonds",
@@ -20,6 +22,9 @@ const products = [
   }
 ];
 
+// ========================================
+// MAIN INITIALIZATION
+// ========================================
 document.addEventListener('DOMContentLoaded', () => {
   const CART_KEY = 'df_cart';
   const STORY_KEY = 'visitedStory';
@@ -74,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (saveCart(cart)) {
       setCartCount();
-      // Optional: Show confirmation
       showNotification(`${item.name} added to cart!`);
     }
   };
@@ -102,11 +106,45 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ========================================
+  // WHATSAPP CHECKOUT
+  // ========================================
+  
+  const generateWhatsAppCheckout = () => {
+    const cart = getCart();
+    if (!cart.length) {
+      alert('Your cart is empty!');
+      return;
+    }
+
+    let message = '🛒 *New Order from Divine Foods*\n\n';
+    let total = 0;
+
+    cart.forEach(item => {
+      const priceMatch = item.price.match(/\d+/);
+      const priceNum = priceMatch ? parseInt(priceMatch[0], 10) : 0;
+      const lineTotal = priceNum * (item.qty || 1);
+      total += lineTotal;
+      
+      message += `• ${item.name}\n`;
+      message += `  Qty: ${item.qty || 1} × ${item.price}\n`;
+      message += `  Subtotal: ₹${lineTotal}\n\n`;
+    });
+
+    message += `*Total: ₹${total}*\n\n`;
+    message += 'Please confirm this order and provide delivery details.';
+
+    const whatsappNumber = '918489201098';
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    window.open(whatsappURL, '_blank');
+  };
+
+  // ========================================
   // NOTIFICATION HELPER
   // ========================================
   
   const showNotification = (message) => {
-    // Simple notification (you can enhance this with a modal/toast)
     const notification = document.createElement('div');
     notification.textContent = message;
     notification.style.cssText = `
@@ -138,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const isProducts = /(^|\/)(products|products\.html)$/.test(path);
   const isCart = /(^|\/)(cart|cart\.html)$/.test(path);
 
-  // Mark story as visited
   if (isStory) {
     try {
       localStorage.setItem(STORY_KEY, 'true');
@@ -147,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Track story link clicks
   document.querySelectorAll('a').forEach(link => {
     try {
       const url = new URL(link.href, location.href);
@@ -167,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Redirect to story if not visited and trying to access products
   if (!visitedStory) {
     document.querySelectorAll('a').forEach(link => {
       try {
@@ -299,7 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     productContainer.innerHTML = html;
     
-    // Add to cart button handlers
     productContainer.querySelectorAll('[data-add]').forEach(btn => {
       btn.addEventListener('click', () => {
         const productName = btn.getAttribute('data-add');
@@ -330,7 +364,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   
-  // Add reveal class to additional elements
   document.querySelectorAll('section > div, .section-title, .footer-col').forEach(el => {
     if (!el.classList.contains('reveal')) {
       el.classList.add('reveal');
@@ -339,56 +372,136 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================
-  // MOUSE PARALLAX EFFECT (LIGHTWEIGHT)
+  // OPTIMIZED CURSOR-REACTIVE BEADS
+  // Mobile-friendly with performance optimization
   // ========================================
   
   (() => {
-    let rafId = null;
+    // Only enable on desktop and if user hasn't opted out of animations
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Skip on mobile or if user prefers reduced motion
+    if (isMobile || prefersReducedMotion) {
+      return;
+    }
+
+    const hero = document.querySelector('.hero-parallax');
+    if (!hero) return;
+
+    // Limit number of beads for performance
+    const BEAD_COUNT = 15; // Reduced from potentially hundreds
+    const REPEL_DISTANCE = 150;
+    const REPEL_STRENGTH = 0.3;
+    const RETURN_SPEED = 0.05;
+    
+    const beads = [];
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
-    let targetX = mouseX;
-    let targetY = mouseY;
-    let idleTimeout = null;
+    let rafId = null;
+    let isActive = false;
 
+    // Create beads
+    for (let i = 0; i < BEAD_COUNT; i++) {
+      const bead = {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        originalX: 0,
+        originalY: 0,
+        vx: 0,
+        vy: 0,
+        size: Math.random() * 3 + 2,
+        opacity: Math.random() * 0.5 + 0.3,
+        element: null
+      };
+      
+      bead.originalX = bead.x;
+      bead.originalY = bead.y;
+      
+      // Create DOM element
+      const el = document.createElement('div');
+      el.className = 'cursor-bead';
+      el.style.cssText = `
+        position: absolute;
+        width: ${bead.size}px;
+        height: ${bead.size}px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, ${bead.opacity});
+        pointer-events: none;
+        will-change: transform;
+        box-shadow: 0 0 ${bead.size * 2}px rgba(255, 255, 255, ${bead.opacity * 0.5});
+      `;
+      
+      bead.element = el;
+      hero.appendChild(el);
+      beads.push(bead);
+    }
+
+    // Animation loop
     const animate = () => {
-      const ease = 0.12;
-      mouseX += (targetX - mouseX) * ease;
-      mouseY += (targetY - mouseY) * ease;
+      beads.forEach(bead => {
+        // Calculate distance from cursor
+        const dx = mouseX - bead.x;
+        const dy = mouseY - bead.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-      const dx = (mouseX - window.innerWidth / 2) / (window.innerWidth / 2);
-      const dy = (mouseY - window.innerHeight / 2) / (window.innerHeight / 2);
+        // Repel if cursor is close
+        if (distance < REPEL_DISTANCE && distance > 0) {
+          const force = (REPEL_DISTANCE - distance) / REPEL_DISTANCE;
+          bead.vx -= (dx / distance) * force * REPEL_STRENGTH;
+          bead.vy -= (dy / distance) * force * REPEL_STRENGTH;
+        }
 
-      const style = document.documentElement.style;
-      style.setProperty('--beads-pos1', `${-dx * 160}px ${-dy * 160}px`);
-      style.setProperty('--beads-pos2', `${-dx * 260}px ${-dy * 260}px`);
-      style.setProperty('--beads-pos3', `${-dx * 360}px ${-dy * 360}px`);
-      style.setProperty('--beads-pos4', `${-dx * 460}px ${-dy * 460}px`);
+        // Return to original position
+        bead.vx += (bead.originalX - bead.x) * RETURN_SPEED;
+        bead.vy += (bead.originalY - bead.y) * RETURN_SPEED;
 
-      rafId = requestAnimationFrame(animate);
-    };
+        // Apply friction
+        bead.vx *= 0.95;
+        bead.vy *= 0.95;
 
-    const startAnimation = () => {
-      if (!rafId) {
+        // Update position
+        bead.x += bead.vx;
+        bead.y += bead.vy;
+
+        // Update DOM (use transform for better performance)
+        bead.element.style.transform = `translate(${bead.x}px, ${bead.y}px)`;
+      });
+
+      if (isActive) {
         rafId = requestAnimationFrame(animate);
       }
+    };
+
+    // Throttled mouse move handler
+    let moveTimeout;
+    const handleMouseMove = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
       
-      if (idleTimeout) {
-        clearTimeout(idleTimeout);
+      if (!isActive) {
+        isActive = true;
+        animate();
       }
-      
-      idleTimeout = setTimeout(() => {
+
+      clearTimeout(moveTimeout);
+      moveTimeout = setTimeout(() => {
+        isActive = false;
         if (rafId) {
           cancelAnimationFrame(rafId);
           rafId = null;
         }
-      }, 1200);
+      }, 2000);
     };
 
-    window.addEventListener('mousemove', (e) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-      startAnimation();
-    }, { passive: true });
+    // Only track mouse on hero section
+    hero.addEventListener('mousemove', handleMouseMove, { passive: true });
+
+    // Cleanup on page leave
+    window.addEventListener('beforeunload', () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      beads.forEach(bead => bead.element.remove());
+    });
   })();
 
   // ========================================
@@ -408,6 +521,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </p>
       `;
       document.getElementById('cart-summary').textContent = '';
+      
+      // Hide checkout button
+      const checkoutBtn = document.getElementById('whatsapp-checkout');
+      if (checkoutBtn) checkoutBtn.style.display = 'none';
+      
       return;
     }
 
@@ -420,19 +538,19 @@ document.addEventListener('DOMContentLoaded', () => {
       subtotal += lineTotal;
 
       return `
-        <div class="product-card" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; margin-bottom:10px;">
+        <div class="product-card" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; margin-bottom:10px; flex-wrap:wrap; gap:12px;">
           <div>
             <strong>${item.name}</strong><br>
             <span class="product-price">${item.price}</span>
           </div>
-          <div style="display:flex; align-items:center; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
             <button 
               class="btn" 
               aria-label="Decrease ${item.name} quantity" 
               data-dec="${item.name}" 
               style="padding:6px 12px;"
             >-</button>
-            <span style="min-width:30px; text-align:center;">${item.qty || 1}</span>
+            <span style="min-width:30px; text-align:center; font-weight:600;">${item.qty || 1}</span>
             <button 
               class="btn" 
               aria-label="Increase ${item.name} quantity" 
@@ -443,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
               class="btn" 
               aria-label="Remove ${item.name} from cart" 
               data-rem="${item.name}" 
-              style="padding:6px 12px; background:#b91c1c; margin-left:8px;"
+              style="padding:6px 12px; background:#b91c1c;"
             >Remove</button>
           </div>
         </div>
@@ -452,6 +570,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartRoot.innerHTML = cartHTML;
     document.getElementById('cart-summary').textContent = `Subtotal: ₹${subtotal} (approx)`;
+
+    // Show checkout button
+    const checkoutBtn = document.getElementById('whatsapp-checkout');
+    if (checkoutBtn) {
+      checkoutBtn.style.display = 'inline-block';
+      checkoutBtn.onclick = generateWhatsAppCheckout;
+    }
 
     // Attach event handlers
     cartRoot.querySelectorAll('[data-dec]').forEach(btn => {
@@ -483,7 +608,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Add CSS for notification animation
+// ========================================
+// ADD CSS FOR NOTIFICATION ANIMATION
+// ========================================
 const style = document.createElement('style');
 style.textContent = `
   @keyframes slideIn {
@@ -493,6 +620,13 @@ style.textContent = `
   @keyframes slideOut {
     from { transform: translateX(0); opacity: 1; }
     to { transform: translateX(400px); opacity: 0; }
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+    font-weight: 700;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #128C7E 0%, #075E54 100%) !important;
   }
 `;
 document.head.appendChild(style);
