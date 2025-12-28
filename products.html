@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop premium almonds, cashews, pistachios and more dry fruits from The Divine Foods.">
   <title>Products | The Divine Foods</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="assets/logo.png">
@@ -10,13 +11,18 @@
 <body>
 
 <header class="navbar">
-  <div class="logo"><img src="assets/logo.png" alt="The Divine Foods" class="brand-logo"><span class="logo-text">THE DIVINE FOODS</span></div>
+  <div class="logo">
+    <img src="assets/logo.png" alt="The Divine Foods Logo" class="brand-logo">
+    <span class="logo-text">THE DIVINE FOODS</span>
+  </div>
   <nav>
     <a href="index.html">Home</a>
     <a href="story.html">Our Story</a>
     <a href="products.html">Products</a>
     <a href="contact.html">Contact</a>
-    <a href="cart.html" aria-label="View Cart">Cart <span id="cart-count" aria-live="polite"></span></a>
+    <a href="cart.html" aria-label="View shopping cart">
+      Cart <span id="cart-count" aria-live="polite"></span>
+    </a>
   </nav>
 </header>
 
@@ -31,9 +37,7 @@
     <p>Pure, fresh, and packed with nutrition.</p>
   </div>
 
-  <!-- JS injects products here -->
   <div id="product-list" class="product-grid">
-    <!-- Fallback content if JS fails -->
     <p style="text-align:center; width:100%;">Loading products...</p>
   </div>
 </section>
