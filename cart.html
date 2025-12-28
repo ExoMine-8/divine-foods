@@ -29,7 +29,7 @@
   <div class="hero-content">
     <div class="hero-panel">
       <h1>Your Cart</h1>
-      <p>Adjust quantities or remove items. Your cart is saved on this device.</p>
+      <p>Review your items and checkout via WhatsApp.</p>
     </div>
   </div>
 </section>
@@ -37,9 +37,16 @@
 <section class="story-content">
   <div class="panel" style="text-align:left;">
     <div id="cart-container"></div>
-    <div id="cart-summary" style="margin-top:20px; font-weight:700;"></div>
-    <div style="margin-top:16px;">
-      <a class="btn" href="products.html">Continue Shopping</a>
+    <div id="cart-summary" style="margin-top:20px; font-weight:700; font-size:1.2rem;"></div>
+    
+    <!-- Checkout Buttons -->
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <button id="whatsapp-checkout" class="btn btn-primary" style="flex:1; min-width:200px;">
+        📱 Checkout via WhatsApp
+      </button>
+      <a class="btn" href="products.html" style="flex:1; min-width:200px; text-align:center;">
+        Continue Shopping
+      </a>
     </div>
   </div>
 </section>
