@@ -259,23 +259,6 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   // ========================================
-  // 10. PARALLAX SCROLL EFFECT
-  // ========================================
-  (() => {
-    if (isMobile || prefersReducedMotion) return;
-
-    const heroSection = document.getElementById('hero-section');
-    if (!heroSection) return;
-
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * 0.5;
-      
-      heroSection.style.transform = `translateY(${rate}px)`;
-    }, { passive: true });
-  })();
-
-  // ========================================
   // 11. CARD TILT EFFECT (Desktop)
   // ========================================
   (() => {
