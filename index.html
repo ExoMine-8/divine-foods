@@ -1,66 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Divine Foods</title>
-  <link rel="icon" href="assets/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Divine Foods | Premium Dry Fruits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body data-theme="dark">
 
-<!-- NAV -->
-<header class="navbar">
-  <div class="logo">
-    <img src="assets/logo.png" alt="The Divine Foods" class="brand-logo">
-    <span class="logo-text">THE DIVINE FOODS</span>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="story.html">Our Story</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Divine Foods Logo" class="brand-logo">
+      <span class="logo-text">THE DIVINE FOODS</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="story.html">Our Story</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+      <button id="theme-toggle" class="btn">Light Mode</button>
+    </nav>
+  </header>
 
-<!-- PARALLAX HERO -->
-<section class="parallax hero-parallax">
-  <div class="overlay-content">
-    <h1>Thoughtfully Packed.<br>Simply Good.</h1>
-    <p>Premium dry fruits and nuts, sourced responsibly.</p>
-    <a href="#story" class="btn">Our Story</a>
-  </div>
-</section>
+  <section class="hero-interactive">
+    <div class="gradient-bg"></div>
 
-<!-- STORY SECTION -->
-<section id="story" class="story">
-  <h2>Our Story</h2>
-  <p>
-    Divine Foods began as a family-led initiative focused on one principle —
-    uncompromising quality. We source premium dry fruits and nuts from trusted
-    suppliers, ensuring hygiene, freshness, and consistency in every pack.
-  </p>
-  <p>
-    No shortcuts. No excessive processing. Just honest food handled with care.
-  </p>
-</section>
+    <div class="hero-content-interactive">
+      <div class="hero-panel-interactive">
+        <h1 class="glitch-text">
+          THE DIVINE FOODS
+        </h1>
+        <p class="fade-in-text">
+          Premium dry fruits and nuts, sourced responsibly.
+        </p>
+        <div class="cta-buttons">
+          <a href="story.html" class="btn btn-primary btn-glow">
+            Discover Our Story
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="products.html" class="btn btn-secondary">
+            Shop Now
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
 
-<!-- PARALLAX BREAK -->
-<section class="parallax mid-parallax"></section>
+    <div class="scroll-indicator">
+      Scroll to explore
+      <div class="scroll-arrow">↓</div>
+    </div>
+  </section>
 
-<!-- CTA -->
-<section class="cta">
-  <h2>Explore Our Products</h2>
-  <p>Carefully selected. Hygienically packed.</p>
-  <a href="products.html" class="btn">Visit Products</a>
-</section>
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-item reveal-up">
+        <div class="stat-number" data-target="100">0</div>
+        <div class="stat-label">% Premium Quality</div>
+      </div>
+      <div class="stat-item reveal-up">
+        <div class="stat-number" data-target="500">0</div>
+        <div class="stat-label">+ Happy Customers</div>
+      </div>
+      <div class="stat-item reveal-up">
+        <div class="stat-number" data-target="25">0</div>
+        <div class="stat-label">+ Products</div>
+      </div>
+    </div>
+  </section>
 
-<footer class="footer">
-  <p>© 2025 The Divine Foods · FSSAI Lic No: XXXXXXXXXX</p>
-</footer>
+  <section class="featured-preview">
+    <div class="section-title">
+      <h2>Featured Products</h2>
+      <p>Carefully selected, freshly packed, delivered with care.</p>
+    </div>
+    <div class="preview-grid">
+      <div class="preview-card reveal-up">
+        <div class="card-image">
+          <img src="assets/mixed-nuts.jpg" alt="Premium Almonds">
+          <div class="card-overlay">
+            <a href="products.html" class="overlay-btn">View Product</a>
+          </div>
+        </div>
+        <h3>Premium Almonds</h3>
+        <p>Crunchy, nutritious, and naturally rich.</p>
+      </div>
+      <div class="preview-card reveal-up">
+        <div class="card-image">
+          <img src="assets/cashews.webp" alt="Cashews">
+          <div class="card-overlay">
+            <a href="products.html" class="overlay-btn">View Product</a>
+          </div>
+        </div>
+        <h3>Cashews</h3>
+        <p>Perfectly roasted, irresistibly smooth.</p>
+      </div>
+      <div class="preview-card reveal-up">
+        <div class="card-image">
+          <img src="assets/salted-pistachios.jpg" alt="Pistachios">
+          <div class="card-overlay">
+            <a href="products.html" class="overlay-btn">View Product</a>
+          </div>
+        </div>
+        <h3>Pistachios</h3>
+        <p>Bold flavour, premium crunch.</p>
+      </div>
+    </div>
+  </section>
 
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>The Divine Foods</h3>
+        <p>Pure. Premium. Purpose-driven.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Email: support@thedivinefoods.in</li>
+          <li>India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 The Divine Foods. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
 </body>
 </html>
