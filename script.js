@@ -1,10 +1,3 @@
-(function() {
-  const storedTheme = localStorage.getItem("divineTheme");
-  const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
-  document.documentElement.setAttribute("data-theme", theme);
-  document.body.setAttribute("data-theme", theme);
-})();
-
 const products = [
   {
     id: "almonds",
@@ -183,6 +176,29 @@ function renderCart() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const applyTheme = (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    document.body.setAttribute("data-theme", theme);
+    const btn = document.getElementById("theme-toggle");
+    if (btn) {
+      btn.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
+    }
+  };
+
+  const storedTheme = localStorage.getItem("divineTheme");
+  const initialTheme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
+  applyTheme(initialTheme);
+
+  const toggleBtn = document.getElementById("theme-toggle");
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      const current = document.body.getAttribute("data-theme") === "light" ? "light" : "dark";
+      const next = current === "dark" ? "light" : "dark";
+      localStorage.setItem("divineTheme", next);
+      applyTheme(next);
+    });
+  }
+
   renderProducts();
   renderCart();
   updateCartCount();
