@@ -322,5 +322,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  const applyTheme = (theme) => {
+    const root = document.documentElement;
+    const body = document.body;
+    root.setAttribute('data-theme', theme);
+    body.setAttribute('data-theme', theme);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    }
+  };
+
+  const storedTheme = localStorage.getItem('divineTheme');
+  const initialTheme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'dark';
+  applyTheme(initialTheme);
+
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const current = document.body.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('divineTheme', next);
+      applyTheme(next);
+    });
+  }
+
   console.log('🎨 Interactive homepage loaded!');
 });

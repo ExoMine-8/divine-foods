@@ -1,3 +1,10 @@
+(function() {
+  const storedTheme = localStorage.getItem("divineTheme");
+  const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
+  document.documentElement.setAttribute("data-theme", theme);
+  document.body.setAttribute("data-theme", theme);
+})();
+
 const products = [
   {
     id: "almonds",
