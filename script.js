@@ -85,9 +85,14 @@ function renderProducts() {
         <div class="product-price">${p.unit}</div>
         <div class="product-actions">
           <button class="btn" data-add-cart="${p.id}">Add to Cart</button>
-          <a class="btn" href="https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-            \`Hello! I'd like to order ${p.name} at ${p.unit}.\`
-          )}" target="_blank" rel="noopener">Order on WhatsApp</a>
+          <a
+            class="btn"
+            href="https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+              "Hello! I'd like to order " + p.name + " at " + p.unit + "."
+            )}"
+            target="_blank"
+            rel="noopener"
+          >Order on WhatsApp</a>
         </div>
       </div>
     `;
