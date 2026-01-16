@@ -22,29 +22,13 @@
     <a href="story.html">Our Story</a>
     <a href="products.html">Products</a>
     <a href="contact.html">Contact</a>
+    <a href="cart.html" aria-label="View Cart">Cart <span id="cart-count" aria-live="polite"></span></a>
   </nav>
 </header>
 
 <section class="products">
   <h2>Our Products</h2>
-
-  <div class="product-grid">
-    <div class="product-card">
-      <img src="assets/m.jpg" loading="lazy" alt="Almonds">
-      <h3>Almonds</h3>
-      <p>Premium grade, hygienically packed.</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/cashews.webp" loading="lazy" alt="Cashews">
-      <h3>Cashews</h3>
-      <p>Carefully selected and sealed fresh.</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/mixed-nuts.jpg" loading="lazy" alt="Mixed Dry Fruits">
-      <h3>Mixed Dry Fruits</h3>
-      <p>Balanced blends for everyday nutrition.</p>
-    </div>
-  </div>
+  <div id="product-list" class="product-grid"></div>
 </section>
 
 <footer class="site-footer">
@@ -72,5 +56,6 @@
   <div class="footer-bottom">© 2025 The Divine Foods</div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

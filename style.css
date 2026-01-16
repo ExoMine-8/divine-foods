@@ -170,6 +170,7 @@ body[data-theme="dark"] .navbar {
   background-position: center top;
   background-repeat: no-repeat;
   padding-top: 72px;
+  padding-bottom: 96px;
 }
 
 body[data-theme="light"] .hero-interactive {

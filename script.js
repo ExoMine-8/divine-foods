@@ -5,7 +5,7 @@ const products = [
     price: 820,
     unit: "₹820 / kg",
     desc: "Premium grade almonds, hygienically packed.",
-    img: "assets/almonds.jpg"
+    img: "assets/m.jpg"
   },
   {
     id: "cashews",
@@ -78,7 +78,7 @@ function renderProducts() {
     const card = document.createElement("div");
     card.className = "product-card";
     card.innerHTML = `
-      <img class="product-img" src="${p.img}" alt="${p.name}">
+      <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy">
       <div class="product-info">
         <h3>${p.name}</h3>
         <p>${p.desc}</p>
@@ -134,7 +134,25 @@ function renderCart() {
     `;
     container.appendChild(row);
   });
-  summary.textContent = `Estimated total: ₹${total}`;
+
+  const lines = [];
+  lines.push("Hello! I'd like to place an order:");
+  lines.push("");
+  cart.forEach(item => {
+    lines.push(`- ${item.name} (${item.unit}) x ${item.qty} = ₹${item.price * item.qty}`);
+  });
+  lines.push("");
+  lines.push(`Estimated total: ₹${total}`);
+
+  const waText = encodeURIComponent(lines.join("\n"));
+  const waUrl = `https://wa.me/${phoneNumber}?text=${waText}`;
+
+  summary.innerHTML = `
+    <div>Estimated total: ₹${total}</div>
+    <div style="margin-top:12px;">
+      <a class="btn" href="${waUrl}" target="_blank" rel="noopener">Checkout on WhatsApp</a>
+    </div>
+  `;
 
   container.addEventListener("click", e => {
     const target = e.target;
