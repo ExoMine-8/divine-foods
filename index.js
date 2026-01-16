@@ -8,35 +8,88 @@ document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ========================================
-  // 1. ANIMATED PARTICLES
+  // 1. INTERACTIVE STARS (float + cursor repulsion)
   // ========================================
   (() => {
     if (prefersReducedMotion) return;
 
-    const particlesContainer = document.getElementById('particles');
-    if (!particlesContainer) return;
+    const container = document.getElementById('particles');
+    const hero = document.getElementById('hero-section');
+    if (!container || !hero) return;
 
-    const particleCount = isMobile ? 20 : 40;
-    
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      
-      const size = Math.random() * 4 + 2;
-      const startX = Math.random() * 100;
-      const duration = Math.random() * 20 + 15;
-      const delay = Math.random() * 5;
-      
-      particle.style.cssText = `
-        width: ${size}px;
-        height: ${size}px;
-        left: ${startX}%;
-        animation: float ${duration}s ${delay}s infinite ease-in-out;
-        opacity: ${Math.random() * 0.5 + 0.3};
-      `;
-      
-      particlesContainer.appendChild(particle);
+    const starCount = isMobile ? 16 : 32;
+    const stars = [];
+
+    const rect = () => container.getBoundingClientRect();
+
+    for (let i = 0; i < starCount; i++) {
+      const el = document.createElement('div');
+      el.className = 'star-node';
+      const r = rect();
+      const x = Math.random() * r.width;
+      const y = Math.random() * r.height;
+      const driftAngle = Math.random() * Math.PI * 2;
+      const speed = isMobile ? 0.03 : 0.06;
+      const vx = Math.cos(driftAngle) * speed;
+      const vy = Math.sin(driftAngle) * speed;
+      stars.push({ el, x, y, vx, vy });
+      container.appendChild(el);
     }
+
+    let mouseX = null;
+    let mouseY = null;
+
+    hero.addEventListener('mousemove', (e) => {
+      const r = rect();
+      mouseX = e.clientX - r.left;
+      mouseY = e.clientY - r.top;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      mouseX = null;
+      mouseY = null;
+    });
+
+    const update = () => {
+      const r = rect();
+      const width = r.width;
+      const height = r.height;
+      const influenceRadius = isMobile ? 0 : 140;
+
+      stars.forEach(star => {
+        if (mouseX !== null && mouseY !== null && influenceRadius > 0) {
+          const dx = star.x - mouseX;
+          const dy = star.y - mouseY;
+          const dist = Math.hypot(dx, dy);
+          if (dist < influenceRadius && dist > 0.001) {
+            const force = (influenceRadius - dist) / influenceRadius * 0.3;
+            const nx = dx / dist;
+            const ny = dy / dist;
+            star.vx += nx * force;
+            star.vy += ny * force;
+          }
+        }
+
+        // gentle normalization so they keep drifting
+        star.vx *= 0.96;
+        star.vy *= 0.96;
+
+        star.x += star.vx;
+        star.y += star.vy;
+
+        // wrap around edges
+        if (star.x < -20) star.x = width + 20;
+        if (star.x > width + 20) star.x = -20;
+        if (star.y < -20) star.y = height + 20;
+        if (star.y > height + 20) star.y = -20;
+
+        star.el.style.transform = `translate3d(${star.x}px, ${star.y}px, 0) rotate(45deg)`;
+      });
+
+      requestAnimationFrame(update);
+    };
+
+    update();
   })();
 
   // ========================================
