@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products | Divine Foods</title>
+  <title>Products | The Divine Foods</title>
+  <meta name="description" content="Browse premium almonds, cashews, pistachios, and mixed nuts from The Divine Foods. Thoughtfully packed and responsibly sourced.">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-</head>
+  </head>
 <body>
 
 <header class="navbar">
@@ -29,6 +30,13 @@
 
 <section class="products">
   <h2>Our Products</h2>
+  <p style="text-align:center;max-width:700px;margin:0 auto 24px;color:var(--text-muted);">
+    Everyday staples and gifting-ready mixes, packed fresh in small batches.
+  </p>
+  <div style="max-width:480px;margin:0 auto 32px;display:flex;gap:12px;align-items:center;">
+    <label for="product-search" style="flex:0 0 auto;font-weight:500;">Search</label>
+    <input id="product-search" type="search" placeholder="Search almonds, cashews, mixes..." style="flex:1;padding:10px 14px;border-radius:999px;border:1px solid rgba(148,163,184,0.7);outline:none;">
+  </div>
   <div id="product-list" class="product-grid"></div>
 </section>
 

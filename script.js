@@ -5,7 +5,8 @@ const products = [
     price: 820,
     unit: "₹820 / kg",
     desc: "Premium grade almonds, hygienically packed.",
-    img: "assets/m.jpg"
+    img: "assets/m.jpg",
+    category: "Almonds"
   },
   {
     id: "cashews",
@@ -13,7 +14,8 @@ const products = [
     price: 850,
     unit: "₹850 / kg",
     desc: "Handpicked cashews with natural sweetness.",
-    img: "assets/cashews.webp"
+    img: "assets/cashews.webp",
+    category: "Cashews"
   },
   {
     id: "pistachios",
@@ -21,7 +23,8 @@ const products = [
     price: 995,
     unit: "₹995 / kg",
     desc: "Carefully sourced, vibrant and fresh.",
-    img: "assets/salted-pistachios.jpg"
+    img: "assets/salted-pistachios.jpg",
+    category: "Pistachios"
   },
   {
     id: "mixed-nuts",
@@ -29,7 +32,8 @@ const products = [
     price: 900,
     unit: "₹900 / kg",
     desc: "Balanced blend for everyday nutrition.",
-    img: "assets/mixed-nuts.jpg"
+    img: "assets/mixed-nuts.jpg",
+    category: "Mixes"
   }
 ];
 
@@ -70,17 +74,32 @@ function addToCart(id) {
   updateCartCount();
 }
 
-function renderProducts() {
+function renderProducts(filter = "") {
   const container = document.getElementById("product-list");
   if (!container) return;
   container.innerHTML = "";
-  products.forEach(p => {
+  const q = filter.trim().toLowerCase();
+  const visible = q
+    ? products.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        p.desc.toLowerCase().includes(q) ||
+        (p.category && p.category.toLowerCase().includes(q))
+      )
+    : products;
+
+  if (visible.length === 0) {
+    container.textContent = "No products match your search. Try a different term.";
+    return;
+  }
+
+  visible.forEach(p => {
     const card = document.createElement("div");
     card.className = "product-card";
     card.innerHTML = `
       <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy">
       <div class="product-info">
         <h3>${p.name}</h3>
+        <div class="product-category">${p.category}</div>
         <p>${p.desc}</p>
         <div class="product-price">${p.unit}</div>
         <div class="product-actions">
@@ -199,6 +218,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const next = current === "dark" ? "light" : "dark";
       localStorage.setItem("divineTheme", next);
       applyTheme(next);
+    });
+  }
+
+  const searchInput = document.getElementById("product-search");
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      renderProducts(searchInput.value);
     });
   }
 
