@@ -17,15 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentY = 0;
 
     window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * 40;
-      mouseY = (e.clientY / window.innerHeight - 0.5) * 40;
+      // Smooth movement tracking
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 50;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 50;
     });
 
     const animate = () => {
-      currentX += (mouseX - currentX) * 0.05;
-      currentY += (mouseY - currentY) * 0.05;
+      // Easing for the bowl movement
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
       
-      floatingImg.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) rotate(${currentX * 0.05}deg)`;
+      // Multi-axis rotation and translation for depth
+      const rotation = currentX * 0.08;
+      floatingImg.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) rotate(${rotation}deg)`;
       requestAnimationFrame(animate);
     };
     animate();
