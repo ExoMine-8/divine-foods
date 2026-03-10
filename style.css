@@ -268,9 +268,9 @@ body[data-theme="light"] .hero-interactive {
 }
 
 .hero-panel-interactive {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 30px;
   padding: 60px 40px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.2);
