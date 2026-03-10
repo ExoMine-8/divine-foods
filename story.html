@@ -3,9 +3,15 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Our Story | The Divine Foods</title>
-  <meta name="description" content="Discover how The Divine Foods sources and packs premium dry fruits and nuts with uncompromising quality.">
+  <title>Our Story | The Divine Foods - Quality & Sourcing</title>
+  <meta name="description" content="Learn about our journey, from sourcing premium dry fruits to our commitment to health and hygiene. Discover the Divine Foods difference.">
   <link rel="icon" href="assets/logo.png">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Our Story | The Divine Foods">
+  <meta property="og:description" content="Discover how we source and pack the finest dry fruits for your health.">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,74 +21,80 @@
 
 <header class="navbar">
   <div class="logo">
-    <img src="assets/logo.png" alt="The Divine Foods" class="brand-logo">
+    <img src="assets/logo.png" alt="The Divine Foods Logo" class="brand-logo" width="44" height="44" loading="lazy">
     <span class="logo-text">THE DIVINE FOODS</span>
   </div>
-  <nav>
+  <nav aria-label="Main Navigation">
     <a href="index.html">Home</a>
-    <a href="story.html">Our Story</a>
+    <a href="story.html" aria-current="page">Our Story</a>
     <a href="products.html">Products</a>
     <a href="contact.html">Contact</a>
-    <button id="theme-toggle" class="btn">Light Mode</button>
+    <a href="cart.html" aria-label="View Cart">Cart <span id="cart-count" aria-live="polite"></span></a>
+    <button id="theme-toggle" class="btn" aria-label="Toggle Dark/Light Mode">Light Mode</button>
   </nav>
 </header>
 
 <section class="page-hero">
   <div class="hero-content">
     <div class="hero-panel">
-      <h1>Our Story</h1>
-      <p>From family traditions to your table — premium quality, always.</p>
-    </div>
-  </div>
-</section>
-
-<section class="stats-section">
-  <div class="stats-container">
-    <div class="stat-item">
-      <div class="stat-number">100</div>
-      <div class="stat-label">% Premium Quality</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">500+</div>
-      <div class="stat-label">Happy Customers</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">25+</div>
-      <div class="stat-label">Products</div>
+      <h1>Our Journey</h1>
+      <p>Committed to purity, sourcing the best for your wellbeing.</p>
     </div>
   </div>
 </section>
 
 <section class="story-content">
   <div class="section-title">
-    <h2>How It All Began</h2>
-    <p>A journey rooted in quality and care</p>
+    <h2>The Divine Foods Philosophy</h2>
+    <p>Honest sourcing, hygienic packing, and premium quality.</p>
   </div>
   <div class="panel">
-    <p>Divine Foods began as a family-led initiative focused on one principle — uncompromising quality. We source premium dry fruits and nuts from trusted suppliers, ensuring hygiene, freshness, and consistency in every pack.</p>
-    <p style="margin-top: 16px;">No shortcuts. No excessive processing. Just honest food handled with care. Every product we offer reflects our commitment to delivering nature's best to your doorstep.</p>
+    <h3>Where We Source</h3>
+    <p>At The Divine Foods, we believe that great health starts with great ingredients. We source our almonds from the sun-drenched orchards of California and our cashews from the finest growers in the coastal regions. Every nut is selected for its size, crunch, and nutritional profile.</p>
+    
+    <h3 style="margin-top: 24px;">Our Process</h3>
+    <p>Quality isn't just about the product; it's about the journey. Our state-of-the-art facility ensures that every product is hygienically handled and packed in small batches. This maintains the natural oils and freshness that set our dry fruits apart from mass-produced alternatives.</p>
+    
+    <h3 style="margin-top: 24px;">Our Promise</h3>
+    <p>No shortcuts. No excessive processing. No hidden additives. Just pure, premium nutrition delivered directly to you. We are on a mission to make healthy snacking a divine experience for every household in India.</p>
   </div>
 </section>
 
 <section>
   <div class="quality-block">
     <div class="section-title">
-      <h2>Why Choose Us</h2>
-      <p>Quality you can trust</p>
+      <h2>Uncompromising Standards</h2>
+      <p>What makes us different</p>
     </div>
     <div class="quality-grid">
-      <div class="quality-card">🌿 Responsibly Sourced</div>
-      <div class="quality-card">✨ Hygienically Packed</div>
-      <div class="quality-card">🚚 Fresh Delivery</div>
-      <div class="quality-card">💯 No Preservatives</div>
+      <div class="quality-card">
+        <span style="display: block; font-size: 1.5rem; margin-bottom: 8px;">🌿</span>
+        <strong>Ethical Sourcing</strong>
+        <p style="font-size: 0.85rem; font-weight: 400; margin-top: 4px;">Directly from farmers and trusted global suppliers.</p>
+      </div>
+      <div class="quality-card">
+        <span style="display: block; font-size: 1.5rem; margin-bottom: 8px;">✨</span>
+        <strong>Hygiene First</strong>
+        <p style="font-size: 0.85rem; font-weight: 400; margin-top: 4px;">Cleanroom packing and multiple quality checks.</p>
+      </div>
+      <div class="quality-card">
+        <span style="display: block; font-size: 1.5rem; margin-bottom: 8px;">🚚</span>
+        <strong>Fresh Batch</strong>
+        <p style="font-size: 0.85rem; font-weight: 400; margin-top: 4px;">Small batches ensure you get the freshest stock.</p>
+      </div>
+      <div class="quality-card">
+        <span style="display: block; font-size: 1.5rem; margin-bottom: 8px;">💯</span>
+        <strong>100% Natural</strong>
+        <p style="font-size: 0.85rem; font-weight: 400; margin-top: 4px;">No preservatives or artificial enhancements.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="cta">
-  <h2>Ready to Explore Our Products?</h2>
-  <p>Browse our range of thoughtfully packed dry fruits and nuts.</p>
-  <a href="products.html" class="btn">View Products</a>
+  <h2>Discover the Divine Difference</h2>
+  <p>Experience the premium quality of our handpicked dry fruits.</p>
+  <a href="products.html" class="btn">Shop All Products</a>
 </section>
 
 <footer class="site-footer">

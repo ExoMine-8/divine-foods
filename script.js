@@ -74,21 +74,31 @@ function addToCart(id) {
   updateCartCount();
 }
 
-function renderProducts(filter = "") {
+function renderProducts(filter = "", category = "All") {
   const container = document.getElementById("product-list");
   if (!container) return;
   container.innerHTML = "";
   const q = filter.trim().toLowerCase();
-  const visible = q
-    ? products.filter(p =>
-        p.name.toLowerCase().includes(q) ||
-        p.desc.toLowerCase().includes(q) ||
-        (p.category && p.category.toLowerCase().includes(q))
-      )
-    : products;
+  
+  let visible = products;
+  
+  if (q) {
+    visible = visible.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.desc.toLowerCase().includes(q) ||
+      (p.category && p.category.toLowerCase().includes(q))
+    );
+  }
+  
+  if (category !== "All") {
+    visible = visible.filter(p => p.category === category);
+  }
 
   if (visible.length === 0) {
-    container.textContent = "No products match your search. Try a different term.";
+    container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
+      <p>No products match your criteria. Try a different term or category.</p>
+      <button class="btn" onclick="resetFilters()" style="margin-top: 20px;">Reset Filters</button>
+    </div>`;
     return;
   }
 
@@ -96,16 +106,23 @@ function renderProducts(filter = "") {
     const card = document.createElement("div");
     card.className = "product-card";
     card.innerHTML = `
-      <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy">
+      <div class="product-img-wrapper">
+        <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy" width="300" height="230">
+        ${p.inventory === 0 ? '<span class="out-of-stock-badge">Out of Stock</span>' : ''}
+      </div>
       <div class="product-info">
+        <div class="product-meta">
+          <span class="product-category">${p.category}</span>
+        </div>
         <h3>${p.name}</h3>
-        <div class="product-category">${p.category}</div>
-        <p>${p.desc}</p>
+        <p class="product-desc">${p.desc}</p>
         <div class="product-price">${p.unit}</div>
         <div class="product-actions">
-          <button class="btn" data-add-cart="${p.id}">Add to Cart</button>
+          <button class="btn btn-add" data-add-cart="${p.id}" ${p.inventory === 0 ? 'disabled' : ''}>
+            ${p.inventory === 0 ? 'Out of Stock' : 'Add to Cart'}
+          </button>
           <a
-            class="btn"
+            class="btn btn-wa"
             href="https://wa.me/${phoneNumber}?text=${encodeURIComponent(
               "Hello! I'd like to order " + p.name + " at " + p.unit + "."
             )}"
@@ -117,15 +134,14 @@ function renderProducts(filter = "") {
     `;
     container.appendChild(card);
   });
+}
 
-  container.addEventListener("click", e => {
-    const target = e.target;
-    if (!(target instanceof HTMLElement)) return;
-    const id = target.getAttribute("data-add-cart");
-    if (!id) return;
-    e.preventDefault();
-    addToCart(id);
-  });
+function resetFilters() {
+  const searchInput = document.getElementById("product-search");
+  if (searchInput) searchInput.value = "";
+  const categorySelect = document.getElementById("category-filter");
+  if (categorySelect) categorySelect.value = "All";
+  renderProducts();
 }
 
 function renderCart() {
@@ -222,9 +238,31 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const searchInput = document.getElementById("product-search");
+  const categorySelect = document.getElementById("category-filter");
+  
+  const handleFilter = () => {
+    const q = searchInput ? searchInput.value : "";
+    const cat = categorySelect ? categorySelect.value : "All";
+    renderProducts(q, cat);
+  };
+
   if (searchInput) {
-    searchInput.addEventListener("input", () => {
-      renderProducts(searchInput.value);
+    searchInput.addEventListener("input", handleFilter);
+  }
+  
+  if (categorySelect) {
+    categorySelect.addEventListener("change", handleFilter);
+  }
+
+  const productList = document.getElementById("product-list");
+  if (productList) {
+    productList.addEventListener("click", e => {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      const id = target.getAttribute("data-add-cart");
+      if (!id) return;
+      e.preventDefault();
+      addToCart(id);
     });
   }
 

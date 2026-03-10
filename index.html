@@ -3,24 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Divine Foods | Premium Dry Fruits</title>
-  <meta name="description" content="The Divine Foods offers premium, responsibly sourced dry fruits and nuts, hygienically packed and delivered fresh.">
+  <title>The Divine Foods | Premium Dry Fruits & Nuts Delivered Fresh</title>
+  <meta name="description" content="Savor the finest almonds, cashews, and pistachios from The Divine Foods. Responsibly sourced, hygienically packed, and delivered fresh across India.">
+  <meta name="keywords" content="dry fruits, almonds, cashews, pistachios, healthy snacks, premium nuts, the divine foods">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thedivinefoods.in/">
+  <meta property="og:title" content="The Divine Foods | Premium Dry Fruits & Nuts">
+  <meta property="og:description" content="Responsibly sourced, hygienically packed, and delivered fresh. Shop our premium range of dry fruits.">
+  <meta property="og:image" content="https://thedivinefoods.in/assets/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://thedivinefoods.in/">
+  <meta property="twitter:title" content="The Divine Foods | Premium Dry Fruits & Nuts">
+  <meta property="twitter:description" content="Responsibly sourced, hygienically packed, and delivered fresh. Shop our premium range of dry fruits.">
+  <meta property="twitter:image" content="https://thedivinefoods.in/assets/og-image.jpg">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "The Divine Foods",
+    "url": "https://thedivinefoods.in/",
+    "logo": "https://thedivinefoods.in/assets/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "support@thedivinefoods.in",
+      "contactType": "customer service"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Almonds",
+        "url": "https://thedivinefoods.in/#product-list"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Cashews",
+        "url": "https://thedivinefoods.in/#product-list"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Salted Pistachios",
+        "url": "https://thedivinefoods.in/#product-list"
+      }
+    ]
+  }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body data-theme="dark">
+  <a href="#product-list-section" class="skip-link">Skip to main content</a>
 
   <header class="navbar">
     <div class="logo">
-      <img src="assets/logo.png" alt="Divine Foods Logo" class="brand-logo">
+      <img src="assets/logo.png" alt="Divine Foods Logo" class="brand-logo" width="44" height="44" loading="lazy">
       <span class="logo-text">THE DIVINE FOODS</span>
     </div>
-    <nav>
-      <a href="index.html">Home</a>
+    <nav aria-label="Main Navigation">
+      <a href="index.html" aria-current="page">Home</a>
       <a href="story.html">Our Story</a>
+      <a href="#product-list">Products</a>
       <a href="contact.html">Contact</a>
       <a href="cart.html" aria-label="View Cart">Cart <span id="cart-count" aria-live="polite"></span></a>
-      <button id="theme-toggle" class="btn">Light Mode</button>
+      <button id="theme-toggle" class="btn" aria-label="Toggle Dark/Light Mode">Light Mode</button>
     </nav>
   </header>
 
@@ -32,20 +92,91 @@
           THE DIVINE FOODS
         </h1>
         <p class="fade-in-text">
-          Premium dry fruits and nuts, sourced responsibly.
+          Premium, responsibly sourced dry fruits and nuts delivered fresh to your doorstep.
         </p>
         <p class="fade-in-text" style="margin-top:8px;font-size:0.98rem;">
           Almonds • Cashews • Pistachios • Everyday nut mixes
         </p>
         <div class="cta-buttons">
-          <a href="story.html" class="btn btn-primary btn-glow">
-            Discover Our Story
-            <span class="btn-arrow">→</span>
+          <a href="#product-list" class="btn btn-primary btn-glow">
+            Shop Premium Nuts
+            <span class="btn-arrow">↓</span>
+          </a>
+          <a href="story.html" class="btn btn-secondary" style="margin-left: 12px; background: rgba(255,255,255,0.1); border: 1px solid var(--accent);">
+            Our Story
           </a>
         </div>
       </div>
     </div>
+  </section>
 
+  <section class="stats-section" id="trust-section">
+    <div class="section-title">
+      <h2>Why Choose The Divine Foods?</h2>
+      <p>We prioritize quality, hygiene, and your health in every pack.</p>
+    </div>
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Natural & Pure</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">5k+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24h</div>
+        <div class="stat-label">Fresh Packing</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="product-list-section">
+    <div class="section-title">
+      <h2>Our Premium Selection</h2>
+      <p>Handpicked for the perfect crunch and nutrition.</p>
+    </div>
+    <div class="product-filters" style="max-width:800px; margin: 0 auto 40px; display: flex; flex-wrap: wrap; gap: 16px; padding: 0 20px; justify-content: center;">
+      <div style="flex: 1; min-width: 250px; position: relative;">
+        <input id="product-search" type="search" placeholder="Search dry fruits..." style="width: 100%; padding: 12px 20px; border-radius: 50px; border: 1px solid var(--accent); background: var(--bg); color: var(--text); outline: none;">
+      </div>
+      <div style="min-width: 180px;">
+        <select id="category-filter" style="width: 100%; padding: 12px 20px; border-radius: 50px; border: 1px solid var(--accent); background: var(--bg); color: var(--text); outline: none; cursor: pointer;">
+          <option value="All">All Categories</option>
+          <option value="Almonds">Almonds</option>
+          <option value="Cashews">Cashews</option>
+          <option value="Pistachios">Pistachios</option>
+          <option value="Mixes">Nut Mixes</option>
+        </select>
+      </div>
+    </div>
+    <div class="product-grid" id="product-list">
+      <!-- Products will be injected here by script.js -->
+    </div>
+  </section>
+
+  <section class="testimonials-section" style="padding: 100px 5%; background: var(--bg);">
+    <div class="section-title">
+      <h2>What Our Customers Say</h2>
+      <p>Real experiences from people who love our premium nuts.</p>
+    </div>
+    <div class="preview-grid" style="max-width: 1200px; margin: 0 auto;">
+      <div class="panel" style="text-align: center;">
+        <div style="color: var(--accent); margin-bottom: 15px; font-size: 1.2rem;">★★★★★</div>
+        <p>"The best cashews I've ever ordered. So fresh and crunchy! The packaging is also very premium."</p>
+        <div style="margin-top: 20px; font-weight: 600;">— Priya S., Chennai</div>
+      </div>
+      <div class="panel" style="text-align: center;">
+        <div style="color: var(--accent); margin-bottom: 15px; font-size: 1.2rem;">★★★★★</div>
+        <p>"I love the mixed nuts for my daily snacking. It's great to know they are responsibly sourced."</p>
+        <div style="margin-top: 20px; font-weight: 600;">— Rahul M., Mumbai</div>
+      </div>
+      <div class="panel" style="text-align: center;">
+        <div style="color: var(--accent); margin-bottom: 15px; font-size: 1.2rem;">★★★★★</div>
+        <p>"Excellent quality almonds. They are consistently good in every pack. Highly recommend!"</p>
+        <div style="margin-top: 20px; font-weight: 600;">— Anjali K., Bangalore</div>
+      </div>
+    </div>
   </section>
 
   <footer class="site-footer">

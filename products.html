@@ -13,30 +13,42 @@
   </head>
 <body>
 
-<header class="navbar">
-  <div class="logo">
-    <img src="assets/logo.png" alt="The Divine Foods" class="brand-logo">
-    <span class="logo-text">THE DIVINE FOODS</span>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="story.html">Our Story</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
-    <a href="cart.html" aria-label="View Cart">Cart <span id="cart-count" aria-live="polite"></span></a>
-    <button id="theme-toggle" class="btn">Light Mode</button>
-  </nav>
-</header>
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Divine Foods Logo" class="brand-logo" width="44" height="44" loading="lazy">
+      <span class="logo-text">THE DIVINE FOODS</span>
+    </div>
+    <nav aria-label="Main Navigation">
+      <a href="index.html">Home</a>
+      <a href="story.html">Our Story</a>
+      <a href="products.html" aria-current="page">Products</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" aria-label="View Cart">Cart <span id="cart-count" aria-live="polite"></span></a>
+      <button id="theme-toggle" class="btn" aria-label="Toggle Dark/Light Mode">Light Mode</button>
+    </nav>
+  </header>
 
-<section class="products">
-  <h2>Our Products</h2>
-  <p style="text-align:center;max-width:700px;margin:0 auto 24px;color:var(--text-muted);">
-    Everyday staples and gifting-ready mixes, packed fresh in small batches.
-  </p>
-  <div style="max-width:480px;margin:0 auto 32px;display:flex;gap:12px;align-items:center;">
-    <label for="product-search" style="flex:0 0 auto;font-weight:500;">Search</label>
-    <input id="product-search" type="search" placeholder="Search almonds, cashews, mixes..." style="flex:1;padding:10px 14px;border-radius:999px;border:1px solid rgba(148,163,184,0.7);outline:none;">
+<section class="products" id="product-list-section">
+  <div class="section-title">
+    <h2>Our Premium Selection</h2>
+    <p>Handpicked for the perfect crunch and nutrition.</p>
   </div>
+  
+  <div class="product-filters" style="max-width:800px; margin: 0 auto 40px; display: flex; flex-wrap: wrap; gap: 16px; padding: 0 20px; justify-content: center;">
+    <div style="flex: 1; min-width: 250px; position: relative;">
+      <input id="product-search" type="search" placeholder="Search dry fruits..." style="width: 100%; padding: 12px 20px; border-radius: 50px; border: 1px solid var(--accent); background: var(--bg); color: var(--text); outline: none;">
+    </div>
+    <div style="min-width: 180px;">
+      <select id="category-filter" style="width: 100%; padding: 12px 20px; border-radius: 50px; border: 1px solid var(--accent); background: var(--bg); color: var(--text); outline: none; cursor: pointer;">
+        <option value="All">All Categories</option>
+        <option value="Almonds">Almonds</option>
+        <option value="Cashews">Cashews</option>
+        <option value="Pistachios">Pistachios</option>
+        <option value="Mixes">Nut Mixes</option>
+      </select>
+    </div>
+  </div>
+
   <div id="product-list" class="product-grid"></div>
 </section>
 

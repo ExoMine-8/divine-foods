@@ -579,6 +579,95 @@ body[data-theme="dark"] .product-price {
 }
 
 /* =========================
+   PRODUCT CARDS & FILTERS
+========================= */
+.product-filters {
+  animation: fadeInUp 0.8s ease both;
+}
+
+.product-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+.product-img-wrapper img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 300 / 230;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.out-of-stock-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.product-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  background: rgba(212, 163, 115, 0.1);
+  padding: 2px 10px;
+  border-radius: 50px;
+}
+
+.product-desc {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.8em;
+}
+
+.btn-add {
+  background: var(--primary);
+}
+
+.btn-add:hover {
+  background: var(--primary-dark);
+}
+
+.btn-add:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-wa {
+  background: #25D366;
+}
+
+.btn-wa:hover {
+  background: #128C7E;
+}
+
+/* =========================
    FOOTER
 ========================= */
 .site-footer {
@@ -693,6 +782,38 @@ body[data-theme="dark"] .quality-block {
   .contact-section {
     padding-top: 100px;
   }
+}
+
+/* =========================
+   ACCESSIBILITY & UTILITIES
+========================= */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--accent);
+  color: white;
+  padding: 10px 20px;
+  z-index: 2000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Ensure good contrast for muted text */
+body[data-theme="light"] {
+  --text-muted: #4b5563;
+}
+
+body[data-theme="dark"] {
+  --text-muted: #9ca3af;
 }
 
 /* =========================
