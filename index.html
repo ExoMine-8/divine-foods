@@ -84,29 +84,39 @@
     </nav>
   </header>
 
-  <section class="hero-interactive" id="hero-section">
-    <div id="particles"></div>
-    <div class="hero-content-interactive">
-      <div class="hero-panel-interactive">
-        <h1 class="glitch-text">
-          THE DIVINE FOODS
+  <section class="hero-new" id="hero-section">
+    <div id="hero-particles"></div>
+    <div class="hero-container">
+      <div class="hero-left">
+        <h1 class="hero-headline">
+          IMMERSE YOURSELF <br>
+          IN PURE NUTRITION.
         </h1>
-        <p class="fade-in-text">
-          Premium, responsibly sourced dry fruits and nuts delivered fresh to your doorstep.
+        <p class="hero-subheadline">
+          Elevate your snacking with nature's finest. Responsibly sourced, hygienically packed, and delivered fresh to your doorstep.
         </p>
-        <p class="fade-in-text" style="margin-top:8px;font-size:0.98rem;">
-          Almonds • Cashews • Pistachios • Everyday nut mixes
-        </p>
-        <div class="cta-buttons">
-          <a href="products.html" class="btn btn-primary btn-glow">
-            Shop Premium Nuts
-            <span class="btn-arrow">→</span>
+        <div class="hero-cta-group">
+          <a href="products.html" class="btn-pill btn-primary">
+            Explore Collection
+            <span class="btn-circle-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </span>
           </a>
-          <a href="story.html" class="btn btn-secondary" style="margin-left: 12px; background: rgba(255,255,255,0.1); border: 1px solid var(--accent);">
-            Our Story
-          </a>
+          <a href="story.html" class="btn-link">Our Story</a>
         </div>
       </div>
+      <div class="hero-right">
+        <div class="hero-visual-wrapper">
+          <img src="assets/m.jpg" alt="Premium Dry Fruits" class="hero-visual-img" id="floating-img">
+          <div class="hero-visual-glow"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span>Scroll to explore</span>
     </div>
   </section>
 
@@ -117,16 +127,16 @@
     </div>
     <div class="stats-container">
       <div class="stat-item">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Natural & Pure</div>
+        <div class="stat-number" data-target="100">0</div>
+        <div class="stat-label">% Natural & Pure</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">5k+</div>
+        <div class="stat-number" data-target="5000">0</div>
         <div class="stat-label">Happy Customers</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">24h</div>
-        <div class="stat-label">Fresh Packing</div>
+        <div class="stat-number" data-target="24">0</div>
+        <div class="stat-label">Fresh Packing (Hours)</div>
       </div>
     </div>
   </section>
