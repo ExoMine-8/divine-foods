@@ -40,24 +40,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('hero-particles');
     if (!container || prefersReducedMotion) return;
 
-    const count = isMobile ? 15 : 40;
+    const count = isMobile ? 20 : 50;
     for (let i = 0; i < count; i++) {
       const particle = document.createElement('div');
       particle.style.position = 'absolute';
-      particle.style.width = Math.random() * 3 + 'px';
+      particle.style.width = Math.random() * 2.5 + 'px';
       particle.style.height = particle.style.width;
-      particle.style.background = 'rgba(212, 163, 115, 0.3)';
+      particle.style.background = 'var(--accent)';
       particle.style.borderRadius = '50%';
       particle.style.top = Math.random() * 100 + '%';
       particle.style.left = Math.random() * 100 + '%';
+      particle.style.opacity = Math.random() * 0.5 + 0.2;
       
-      const duration = Math.random() * 3000 + 2000;
-      const delay = Math.random() * 2000;
+      const duration = Math.random() * 4000 + 3000;
+      const delay = Math.random() * 3000;
       
       particle.animate([
-        { opacity: 0, transform: 'translateY(0)' },
-        { opacity: 0.8, transform: 'translateY(-20px)' },
-        { opacity: 0, transform: 'translateY(-40px)' }
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(-30px)' },
+        { transform: 'translateY(0)' }
       ], {
         duration: duration,
         delay: delay,
