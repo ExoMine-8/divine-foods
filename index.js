@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const animate = () => {
       // Easing for the bowl movement
-      currentX += (mouseX - currentX) * 0.08;
-      currentY += (mouseY - currentY) * 0.08;
+      currentX += (mouseX - currentX) * 0.05; // Slower, smoother easing
+      currentY += (mouseY - currentY) * 0.05;
       
       // Multi-axis rotation and translation for depth
-      const rotation = currentX * 0.08;
+      const rotation = currentX * 0.05; // Reduced rotation
       floatingImg.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) rotate(${rotation}deg)`;
       requestAnimationFrame(animate);
     };
