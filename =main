@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 1. HERO FLOATING IMAGE PARALLAX
   (() => {
+    const wrapper = document.querySelector('.hero-visual-wrapper');
     const floatingImg = document.getElementById('floating-img');
-    if (!floatingImg || prefersReducedMotion || isMobile) return;
+    if (!wrapper || !floatingImg || prefersReducedMotion || isMobile) return;
 
     let mouseX = 0;
     let mouseY = 0;
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Multi-axis rotation and translation for depth
       const rotation = currentX * 0.05; // Reduced rotation
-      floatingImg.style.transform = `translate3d(${currentX}px, ${totalY}px, 0) rotate(${rotation}deg)`;
+      wrapper.style.transform = `translate3d(${currentX}px, ${totalY}px, 0) rotate(${rotation}deg)`;
       requestAnimationFrame(animate);
     };
     animate();
