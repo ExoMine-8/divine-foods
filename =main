@@ -839,6 +839,8 @@ body[data-theme="dark"] .quality-block {
 @media (max-width: 768px) {
   .navbar {
     padding: 0 16px;
+    padding-top: env(safe-area-inset-top, 0px);
+    height: calc(72px + env(safe-area-inset-top, 0px));
   }
 
   .logo-text {
@@ -860,12 +862,16 @@ body[data-theme="dark"] .quality-block {
   }
 
   .page-hero {
-    padding-top: 100px;
+    padding-top: 120px;
+  }
+
+  .hero-new {
+    padding-top: 140px;
   }
 
   .products,
   .contact-section {
-    padding-top: 100px;
+    padding-top: 120px;
   }
 }
 
